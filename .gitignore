@@ -1,0 +1,5 @@
+.metadata/
+RemoteSystemsTempFiles/
+desktop.ini
+servlet/target/
+struts/target/
