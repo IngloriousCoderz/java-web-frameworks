@@ -4,18 +4,23 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 	<display-name>Servlets &amp; JSPs</display-name>
-
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-
 	<servlet>
 		<servlet-name>HelloWorld</servlet-name>
-		<servlet-class>it.formarete.HelloWorld</servlet-class>
+		<servlet-class>it.formarete.HelloWorldServlet</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>HelloWorld</servlet-name>
 		<url-pattern>/hello</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>GoToHello</servlet-name>
+		<servlet-class>it.formarete.GoToHelloServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GoToHello</servlet-name>
+		<url-pattern>/gotohello</url-pattern>
 	</servlet-mapping>
 </web-app>
