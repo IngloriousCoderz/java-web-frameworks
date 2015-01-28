@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
 <!doctype html>
 <html>
 <head>
-<title>Hello World</title>
+<title>Login con successo</title>
 </head>
 <body>
-	<p>Hello ${name}!</p>
+	<h1>Sei dentro!</h1>
+	<p>Hello ${username}!</p>
 </body>
 </html>

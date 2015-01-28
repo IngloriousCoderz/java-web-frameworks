@@ -5,22 +5,16 @@
 	id="WebApp_ID" version="2.5">
 	<display-name>Servlets &amp; JSPs</display-name>
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	<servlet>
-		<servlet-name>HelloWorld</servlet-name>
-		<servlet-class>it.formarete.HelloWorldServlet</servlet-class>
+		<description>Servlet di login.</description>
+		<display-name>Login</display-name>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>it.formarete.servlet.Login</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>HelloWorld</servlet-name>
-		<url-pattern>/hello</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>GoToHello</servlet-name>
-		<servlet-class>it.formarete.GoToHelloServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>GoToHello</servlet-name>
-		<url-pattern>/gotohello</url-pattern>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 </web-app>
