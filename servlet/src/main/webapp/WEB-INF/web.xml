@@ -6,6 +6,7 @@
 	<display-name>Servlets &amp; JSPs</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<description>Servlet di login.</description>
@@ -17,4 +18,21 @@
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
+	<filter>
+		<display-name>Authentication</display-name>
+		<filter-name>Authentication</filter-name>
+		<filter-class>it.formarete.filter.Authentication</filter-class>
+		<init-param>
+			<param-name>username</param-name>
+			<param-value>giancarlo</param-value>
+		</init-param>
+		<init-param>
+			<param-name>password</param-name>
+			<param-value>magalli</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>Authentication</filter-name>
+		<url-pattern>/area-protetta/*</url-pattern>
+	</filter-mapping>
 </web-app>
