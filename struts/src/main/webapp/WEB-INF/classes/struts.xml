@@ -6,13 +6,17 @@
 	<constant name="struts.devMode" value="true" />
 
 	<package name="hello" extends="struts-default">
+		<interceptors>
+			<interceptor name="authentication" class="it.formarete.interceptor.Authentication" />
+		</interceptors>
+
 		<action name="login" class="it.formarete.action.Login" method="execute">
-		 	<interceptor-ref name="params" />
-		 	<interceptor-ref name="timer" />
 			<result name="success">/hello.jsp</result>
 			<result name="login">/login-error.jsp</result>
 		</action>
+
 		<action name="area-protetta" class="it.formarete.action.RestrictedArea" method="execute">
+			<interceptor-ref name="authentication" />
 			<result name="success">/area-protetta/index.jsp</result>
 			<result name="login">/login.jsp</result>
 		</action>
