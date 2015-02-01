@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+
+	<package name="hello" extends="struts-default">
+		<action name="login" class="it.formarete.action.Login" method="execute">
+		 	<interceptor-ref name="params" />
+		 	<interceptor-ref name="timer" />
+			<result name="success">/hello.jsp</result>
+			<result name="login">/login-error.jsp</result>
+		</action>
+		<action name="area-protetta" class="it.formarete.action.RestrictedArea" method="execute">
+			<result name="success">/area-protetta/index.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+	</package>
+</struts>

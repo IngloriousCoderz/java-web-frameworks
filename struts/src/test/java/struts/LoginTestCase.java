@@ -1,17 +1,22 @@
 package struts;
 
-import it.formarete.HelloWorldAction;
+import it.formarete.action.Login;
 import junit.framework.TestCase;
 
-public class HelloWorldTestCase extends TestCase {
-	public void testName() {
-		HelloWorldAction action = new HelloWorldAction();
-		action.setName("Antony");
-		assertEquals("Antony", action.getName());
+import com.opensymphony.xwork2.ActionSupport;
+
+public class LoginTestCase extends TestCase {
+	public void testSuccessfulLogin() throws Exception {
+		Login login = new Login();
+		login.setUsername("giancarlo");
+		login.setPassword("magalli");
+		assertEquals(ActionSupport.SUCCESS, login.execute());
 	}
 
-	public void testExecute() throws Exception {
-		HelloWorldAction action = new HelloWorldAction();
-		assertEquals("success", action.execute());
+	public void testFailedLogin() throws Exception {
+		Login login = new Login();
+		login.setUsername("pippo");
+		login.setPassword("baudo");
+		assertEquals(ActionSupport.LOGIN, login.execute());
 	}
 }
