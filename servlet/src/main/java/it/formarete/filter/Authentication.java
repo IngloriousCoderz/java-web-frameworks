@@ -34,6 +34,7 @@ public class Authentication implements Filter {
 		String cookieValue = getCookieValue(httpRequest, USERNAME);
 
 		if (rightUsername.equals(cookieValue)) {
+			request.setAttribute(USERNAME, cookieValue);
 			chain.doFilter(request, response);
 			return;
 		}
@@ -43,6 +44,7 @@ public class Authentication implements Filter {
 
 		if (rightUsername.equals(username) && rightPassword.equals(password)) {
 			httpResponse.addCookie(new Cookie(USERNAME, username));
+			request.setAttribute(USERNAME, username);
 			chain.doFilter(request, response);
 			return;
 		}
