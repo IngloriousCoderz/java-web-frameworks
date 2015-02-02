@@ -10,15 +10,20 @@
 			<interceptor name="authentication" class="it.formarete.interceptor.Authentication" />
 		</interceptors>
 
+		<global-results>
+			<result name="login" type="redirect">area-protetta</result>
+		</global-results>
+
 		<action name="login" class="it.formarete.action.Login" method="execute">
 			<result name="success">/hello.jsp</result>
-			<result name="login">/login-error.jsp</result>
+			<result name="input">/login-error.jsp</result>
 		</action>
 
 		<action name="area-protetta" class="it.formarete.action.RestrictedArea" method="execute">
 			<interceptor-ref name="authentication" />
 			<result name="success">/area-protetta/index.jsp</result>
 			<result name="login">/login.jsp</result>
+			<result name="input">/login.jsp</result>
 		</action>
 	</package>
 </struts>

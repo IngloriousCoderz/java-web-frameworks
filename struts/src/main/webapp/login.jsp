@@ -12,10 +12,10 @@ div {
 <body>
 	<h1>Devi autenticarti</h1>
 	<div><s:property value="message"/></div>
-	<form action="<s:property value="destination"/>" method="POST">
-		<input type="text" name="username" /><br>
-		<input type="password" name="password" /><br>
-		<input type="submit" value="login" />
-	</form>
+	<s:form action="area-protetta">
+		<s:textfield name="username" label="Username" />
+		<s:textfield type="password" name="password" label="Password" />
+		<s:submit value="Login" />
+	</s:form>
 </body>
 </html>

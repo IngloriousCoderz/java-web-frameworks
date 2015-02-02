@@ -13,7 +13,7 @@ public class Login extends ActionSupport {
 		if ("giancarlo".equals(username) && "magalli".equals(password)) {
 			return SUCCESS;
 		}
-		return LOGIN;
+		return INPUT;
 	}
 
 	public String getUsername() {

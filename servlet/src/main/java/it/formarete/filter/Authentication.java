@@ -1,5 +1,8 @@
 package it.formarete.filter;
 
+import it.formarete.model.User;
+import it.formarete.service.UsersDB;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -13,16 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Authentication implements Filter {
-	private final static String USERNAME = "username";
-	private final static String PASSWORD = "password";
-
-	private String rightUsername;
-	private String rightPassword;
-
 	@Override
-	public void init(FilterConfig config) throws ServletException {
-		rightUsername = config.getInitParameter(USERNAME);
-		rightPassword = config.getInitParameter(PASSWORD);
+	public void init(FilterConfig arg0) throws ServletException {
 	}
 
 	@Override
@@ -30,35 +25,47 @@ public class Authentication implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		User user = null;
 
-		String cookieValue = getCookieValue(httpRequest, USERNAME);
+		String cookieValue = getCookieValue(httpRequest, "USER");
+		user = UsersDB.get(cookieValue);
 
-		if (rightUsername.equals(cookieValue)) {
-			request.setAttribute(USERNAME, cookieValue);
+		if (user != null) {
+			request.setAttribute("user", user);
 			chain.doFilter(request, response);
 			return;
 		}
 
-		String username = request.getParameter(USERNAME);
-		String password = request.getParameter(PASSWORD);
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		user = UsersDB.get(username);
 
-		if (rightUsername.equals(username) && rightPassword.equals(password)) {
-			httpResponse.addCookie(new Cookie(USERNAME, username));
-			request.setAttribute(USERNAME, username);
-			chain.doFilter(request, response);
-			return;
+		if (user != null) {
+			if (user.getPassword().equals(password)) {
+				httpResponse.addCookie(new Cookie("USER", user.getUsername()));
+				request.setAttribute("user", user);
+				chain.doFilter(request, response);
+				return;
+			}
 		}
 
-		request.setAttribute("message",
-				"nome utente e password non corrispondono, riprova");
 		request.setAttribute("destination", httpRequest.getRequestURI());
+		if (username != null || password != null) {
+			request.setAttribute("message",
+					"nome utente e password non corrispondono, riprova");
+		}
 		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
 
 	private String getCookieValue(HttpServletRequest request, String name) {
 		Cookie[] cookies = request.getCookies();
-		int i = 0;
 		String cookieValue = null;
+
+		if (cookies == null) {
+			return cookieValue;
+		}
+
+		int i = 0;
 		while (i < cookies.length && cookieValue == null) {
 			Cookie cookie = cookies[i];
 			if (name.equals(cookie.getName())) {
