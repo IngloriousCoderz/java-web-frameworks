@@ -8,6 +8,13 @@
 	<package name="hello" extends="struts-default">
 		<interceptors>
 			<interceptor name="authentication" class="it.formarete.interceptor.Authentication" />
+			
+			<interceptor-stack name="cookie-auth">
+				<interceptor-ref name="cookie">
+    				<param name="cookiesName">username</param>
+				</interceptor-ref>
+				<interceptor-ref name="authentication" />
+			</interceptor-stack>
 		</interceptors>
 
 		<global-results>
@@ -20,7 +27,7 @@
 		</action>
 
 		<action name="area-protetta" class="it.formarete.action.RestrictedArea" method="execute">
-			<interceptor-ref name="authentication" />
+			<interceptor-ref name="cookie-auth" />
 			<result name="success">/area-protetta/index.jsp</result>
 			<result name="login">/login.jsp</result>
 			<result name="input">/login.jsp</result>

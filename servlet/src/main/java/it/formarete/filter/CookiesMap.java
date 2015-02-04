@@ -13,7 +13,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-public class CookieMap implements Filter {
+public class CookiesMap implements Filter {
 	@Override
 	public void init(FilterConfig config) throws ServletException {
 	}
