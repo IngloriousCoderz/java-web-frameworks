@@ -4,6 +4,7 @@ import it.formarete.model.User;
 import it.formarete.service.UsersDB;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Authentication implements Filter {
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig config) throws ServletException {
 	}
 
 	@Override
@@ -27,7 +28,10 @@ public class Authentication implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		User user = null;
 
-		String cookieValue = getCookieValue(httpRequest, "USER");
+		Map<String, String> cookies = (Map<String, String>) request
+				.getAttribute("cookies");
+		String cookieValue = cookies.get("USER");
+		// String cookieValue = getCookieValue(httpRequest, "USER");
 		user = UsersDB.get(cookieValue);
 
 		if (user != null) {

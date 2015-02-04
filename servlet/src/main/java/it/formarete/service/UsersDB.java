@@ -18,4 +18,7 @@ public class UsersDB {
 	public static User get(String username) {
 		return USERS.get(username);
 	}
+
+	private UsersDB() {
+	}
 }
