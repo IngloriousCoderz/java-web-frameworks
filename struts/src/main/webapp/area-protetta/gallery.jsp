@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +7,6 @@
 </head>
 <body>
 	<p><img src="http://tinyurl.com/k3jwlnw" alt="${username}" /></p>
-	<p><a href="index.jsp">torna alla home dell'area protetta</a></p>
+	<p><s:a href="area-protetta/home">torna alla home dell'area protetta</s:a></p>
 </body>
 </html>

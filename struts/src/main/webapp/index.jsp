@@ -11,6 +11,6 @@
 		<s:textfield type="password" name="password" label="Password" />
 		<s:submit value="Login" />
 	</s:form>
-	<s:a action="area-protetta">vai all'area protetta</s:a>
+	<s:a action="area-protetta/home">vai all'area protetta</s:a>
 </body>
 </html>

@@ -7,6 +7,6 @@
 <body>
 	<h1>Sei dentro!</h1>
 	<p>Hello <s:property value="username"/>, benvenuto nell'area protetta!</p>
-	<p><a href="gallery.jsp">vai alla photogallery</a></p>
+	<p><s:a href="area-protetta/gallery">vai alla photogallery</s:a></p>
 </body>
 </html>
