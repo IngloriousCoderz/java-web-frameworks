@@ -12,23 +12,51 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class CookiesMap implements Filter {
+	String[] cookieNames;
+
 	@Override
 	public void init(FilterConfig config) throws ServletException {
+		String initParam = config.getInitParameter("cookieNames");
+		if (initParam != null) {
+			cookieNames = initParam.split(",");
+		}
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-		Map<String, String> cookies = new HashMap<String, String>();
-		for (Cookie cookie : httpRequest.getCookies()) {
-			cookies.put(cookie.getName(), cookie.getValue());
+		Map<String, String> cookiesMap = new HashMap<String, String>();
+
+		Cookie[] cookies = httpRequest.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				cookiesMap.put(cookie.getName(), cookie.getValue());
+			}
 		}
-		request.setAttribute("cookies", cookies);
+
+		if (cookieNames == null) {
+			cookieNames = (String[]) cookiesMap.keySet().toArray();
+		}
+
+		for (String cookieName : cookieNames) {
+			request.setAttribute(cookieName, cookiesMap.get(cookieName));
+		}
+
 		chain.doFilter(request, response);
+
+		for (String cookieName : cookieNames) {
+			if (cookiesMap.get(cookieName) == null) {
+				String cookieValue = (String) request.getAttribute(cookieName);
+				// a null cookie is ok
+				httpResponse.addCookie(new Cookie(cookieName, cookieValue));
+			}
+		}
 	}
 
 	@Override

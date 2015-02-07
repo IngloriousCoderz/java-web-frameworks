@@ -1,5 +1,6 @@
 .metadata/
 RemoteSystemsTempFiles/
+Servers/
 desktop.ini
 quickstart/target/
 servlet/target/

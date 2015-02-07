@@ -8,7 +8,6 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
-		<description>Servlet di login.</description>
 		<display-name>Login</display-name>
 		<servlet-name>Login</servlet-name>
 		<servlet-class>it.formarete.servlet.Login</servlet-class>
@@ -18,15 +17,19 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 	<filter>
-		<filter-name>CookiesMap</filter-name>
+		<filter-name>UserCookie</filter-name>
 		<filter-class>it.formarete.filter.CookiesMap</filter-class>
+		<init-param>
+			<param-name>cookieNames</param-name>
+			<param-value>username</param-value>
+		</init-param>
 	</filter>
 	<filter>
 		<filter-name>Authentication</filter-name>
 		<filter-class>it.formarete.filter.Authentication</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>CookiesMap</filter-name>
+		<filter-name>UserCookie</filter-name>
 		<url-pattern>/area-protetta/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
