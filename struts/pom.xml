@@ -29,7 +29,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>struts</finalName>
+		<finalName>${project.artifactId}</finalName>
 
 		<plugins>
 			<plugin>

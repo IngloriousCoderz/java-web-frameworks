@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts   
-Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<constant name="struts.devMode" value="true" />
-<!-- 	<constant name="struts.action.extension" value="" /> -->
+	<!-- <constant name="struts.action.extension" value="" /> -->
 
 	<package name="hello" extends="struts-default">
 		<action name="home">
@@ -16,13 +16,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 	</package>
 
-	<package name="area-protetta" namespace="/area-protetta" extends="struts-default">
+	<package name="area-protetta" namespace="/area-protetta"
+		extends="struts-default">
 		<interceptors>
-			<interceptor name="authentication" class="it.formarete.interceptor.Authentication" />
+			<interceptor name="authentication"
+				class="it.formarete.interceptor.Authentication" />
 
 			<interceptor-stack name="cookie-auth">
 				<interceptor-ref name="cookie">
-    				<param name="cookiesName">username</param>
+					<param name="cookiesName">USER</param>
 				</interceptor-ref>
 				<interceptor-ref name="authentication" />
 			</interceptor-stack>
@@ -30,19 +32,24 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<global-results>
 			<result name="login" type="chain">login</result>
-			<result name="input" type="chain">login</result>
 		</global-results>
 
 		<action name="login" class="it.formarete.action.Login2">
-			<result>login.jsp</result>
+			<result name="success">${destination}</result>
+			<result name="login">login.jsp</result>
+			<result name="input">
+				login.jsp
+				<!-- <param name="message">nome utente e password non corrispondono, 
+					riprova</param> -->
+			</result>
 		</action>
 
-		<action name="home" class="it.formarete.model.User">
+		<action name="home" class="it.formarete.action.RestrictedArea">
 			<interceptor-ref name="cookie-auth" />
 			<result>index.jsp</result>
 		</action>
 
-		<action name="gallery" class="it.formarete.model.User">
+		<action name="gallery" class="it.formarete.action.RestrictedArea">
 			<interceptor-ref name="cookie-auth" />
 			<result>gallery.jsp</result>
 		</action>

@@ -12,7 +12,7 @@ public class RestrictedArea extends ActionSupport implements ModelDriven<User> {
 
 	public RestrictedArea() {
 		user = new User();
-		user.setUsername("stronzo");
+		user.setUsername("nobody");
 	}
 
 	@Override
