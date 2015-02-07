@@ -2,6 +2,7 @@
 RemoteSystemsTempFiles/
 Servers/
 desktop.ini
+mvc/target/
 quickstart/target/
 servlet/target/
 struts/target/
