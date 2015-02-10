@@ -32,16 +32,13 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<global-results>
 			<result name="login" type="chain">login</result>
+			<result name="input" type="chain">login.jsp</result>
 		</global-results>
 
 		<action name="login" class="it.formarete.action.Login2">
-			<result name="success">${destination}</result>
+			<result name="success" type="redirectAction">${destination}</result>
 			<result name="login">login.jsp</result>
-			<result name="input">
-				login.jsp
-				<!-- <param name="message">nome utente e password non corrispondono, 
-					riprova</param> -->
-			</result>
+			<result name="input">login.jsp</result>
 		</action>
 
 		<action name="home" class="it.formarete.action.RestrictedArea">

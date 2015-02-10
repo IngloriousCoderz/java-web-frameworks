@@ -27,19 +27,20 @@ public class Login2 extends ActionSupport implements RequestAware {
 		destination = ((ActionMapping) request.get("struts.actionMapping"))
 				.getName();
 
-		User user = UsersDB.get(username);
-
-		if (user != null && user.getPassword().equals(password)) {
-			ServletActionContext.getResponse()
-					.addCookie(new Cookie("USER", username));
-			return SUCCESS;
-		}
-
-		if (username != null || password != null) {
-			return LOGIN;
-		}
-
-		return INPUT;
+//		User user = UsersDB.get(username);
+//
+//		if (user != null && user.getPassword().equals(password)) {
+//			ServletActionContext.getResponse()
+//					.addCookie(new Cookie("USER", username));
+//			return SUCCESS;
+//		}
+//
+//		if (username != null || password != null) {
+//			return LOGIN;
+//		}
+//
+//		return INPUT;
+		return SUCCESS;
 	}
 
 	public String getMessage() {

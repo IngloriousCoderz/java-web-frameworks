@@ -1,11 +1,11 @@
 package it.formarete.interceptor;
 
+import it.formarete.model.User;
+import it.formarete.service.UsersDB;
+
 import javax.servlet.http.Cookie;
 
 import org.apache.struts2.ServletActionContext;
-
-import it.formarete.model.User;
-import it.formarete.service.UsersDB;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
@@ -17,9 +17,12 @@ public class Authentication extends AbstractInterceptor {
 	private String USER;
 	private String username;
 	private String password;
+	private String destination;
+	private String message;
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
+		destination = invocation.getInvocationContext().getName();
 		User user = null;
 
 		user = UsersDB.get(USER);
@@ -28,13 +31,20 @@ public class Authentication extends AbstractInterceptor {
 			return invocation.invoke();
 		}
 
-//		user = UsersDB.get(username);
-//
-//		if (user != null && user.getPassword().equals(password)) {
-//			ServletActionContext.getResponse()
-//					.addCookie(new Cookie("USER", username));
-//			return invocation.invoke();
-//		}
+		//username = "giancarlo";
+		//password = "magalli";
+		user = UsersDB.get(username);
+
+		if (user != null && user.getPassword().equals(password)) {
+			ServletActionContext.getResponse()
+					.addCookie(new Cookie("USER", username));
+			return invocation.invoke();
+		}
+
+		if (username != null || password != null) {
+			message = "nome utente e password non corrispondono, riprova";
+			return Action.INPUT;
+		}
 
 		return Action.LOGIN;
 	}
@@ -61,5 +71,21 @@ public class Authentication extends AbstractInterceptor {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }
