@@ -4,6 +4,11 @@
 <head>
 <title>Photogallery</title>
 <meta charset="UTF-8">
+<style type="text/css">
+img {
+	max-width: 100%;
+}
+</style>
 </head>
 <body>
 	<h1>Photogallery di <s:property value="user.username" /></h1>
