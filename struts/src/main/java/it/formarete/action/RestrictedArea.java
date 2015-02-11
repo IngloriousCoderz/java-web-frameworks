@@ -11,6 +11,8 @@ public class RestrictedArea extends ActionSupport implements ModelDriven<User> {
 
 	private String USER;
 	private User user;
+	private String username;
+	private String password;
 
 	@Override
 	public String execute() throws Exception {
@@ -29,5 +31,21 @@ public class RestrictedArea extends ActionSupport implements ModelDriven<User> {
 
 	public void setUSER(String USER) {
 		this.USER = USER;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

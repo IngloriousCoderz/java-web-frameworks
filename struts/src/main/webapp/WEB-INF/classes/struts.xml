@@ -24,6 +24,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 			<interceptor-stack name="cookie-auth">
 				<interceptor-ref name="defaultStack" />
+<!-- 				<interceptor-ref name="execAndWait" /> -->
 				<interceptor-ref name="cookie">
 					<param name="cookiesName">USER</param>
 				</interceptor-ref>

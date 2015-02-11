@@ -17,7 +17,8 @@ public class LoginForm extends ActionSupport implements RequestAware {
 	private String password;
 
 	public String execute() {
-		if (!username.isEmpty() || !password.isEmpty()) {
+		if (username != null && !username.isEmpty() || password != null
+				&& !password.isEmpty()) {
 			message = "nome utente e password non corrispondono, riprova";
 		}
 
