@@ -22,13 +22,13 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<interceptor name="authentication"
 				class="it.formarete.interceptor.Authentication" />
 
-			<interceptor-stack name="cookie-auth">
-				<interceptor-ref name="defaultStack" />
+			<interceptor-stack name="authStack">
 <!-- 				<interceptor-ref name="execAndWait" /> -->
 				<interceptor-ref name="cookie">
 					<param name="cookiesName">USER</param>
 				</interceptor-ref>
 				<interceptor-ref name="authentication" />
+				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
 
@@ -41,12 +41,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="home" class="it.formarete.action.RestrictedArea">
-			<interceptor-ref name="cookie-auth" />
+			<interceptor-ref name="authStack" />
 			<result>index.jsp</result>
 		</action>
 
 		<action name="gallery" class="it.formarete.action.RestrictedArea">
-			<interceptor-ref name="cookie-auth" />
+			<interceptor-ref name="authStack" />
 			<result>gallery.jsp</result>
 		</action>
 	</package>

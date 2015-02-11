@@ -28,8 +28,7 @@ public class Authentication extends AbstractInterceptor {
 		String USER = stack.findString("USER");
 		String username = stack.findString("username");
 		String password = stack.findString("password");
-		LOG.info("USER: [#0], username: [#1], password: [#2]", USER, username,
-				password);
+		LOG.info("USER: #0, username: #1, password: #2", USER, username, password);
 
 		user = UsersDB.get(USER);
 
