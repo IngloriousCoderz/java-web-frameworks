@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.opensymphony.xwork2.util.ValueStack;
 
 public class Authentication extends AbstractInterceptor {
 	private static final long serialVersionUID = 5857937186540313938L;
@@ -17,33 +18,30 @@ public class Authentication extends AbstractInterceptor {
 	private String USER;
 	private String username;
 	private String password;
-	private String destination;
-	private String message;
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		destination = invocation.getInvocationContext().getName();
 		User user = null;
+
+		ValueStack stack = invocation.getStack();
+		USER = stack.findString("USER");
+		username = stack.findString("username");
+		password = stack.findString("password");
 
 		user = UsersDB.get(USER);
 
 		if (user != null) {
+			stack.set("user", user);
 			return invocation.invoke();
 		}
 
-		//username = "giancarlo";
-		//password = "magalli";
 		user = UsersDB.get(username);
 
 		if (user != null && user.getPassword().equals(password)) {
 			ServletActionContext.getResponse()
 					.addCookie(new Cookie("USER", username));
+			stack.set("user", user);
 			return invocation.invoke();
-		}
-
-		if (username != null || password != null) {
-			message = "nome utente e password non corrispondono, riprova";
-			return Action.INPUT;
 		}
 
 		return Action.LOGIN;
@@ -71,21 +69,5 @@ public class Authentication extends AbstractInterceptor {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getDestination() {
-		return destination;
-	}
-
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
 	}
 }

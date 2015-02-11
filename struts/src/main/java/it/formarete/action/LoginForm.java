@@ -1,20 +1,14 @@
 package it.formarete.action;
 
-import it.formarete.model.User;
-import it.formarete.service.UsersDB;
-
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
-
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.mapper.ActionMapping;
 import org.apache.struts2.interceptor.RequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class Login2 extends ActionSupport implements RequestAware {
-	private static final long serialVersionUID = -2195611022007498025L;
+public class LoginForm extends ActionSupport implements RequestAware {
+	private static final long serialVersionUID = 284613619823620755L;
 
 	private Map<String, Object> request;
 	private String message;
@@ -22,24 +16,14 @@ public class Login2 extends ActionSupport implements RequestAware {
 	private String username;
 	private String password;
 
-	@Override
-	public String execute() throws Exception {
+	public String execute() {
+		if (!username.isEmpty() || !password.isEmpty()) {
+			message = "nome utente e password non corrispondono, riprova";
+		}
+
 		destination = ((ActionMapping) request.get("struts.actionMapping"))
 				.getName();
 
-//		User user = UsersDB.get(username);
-//
-//		if (user != null && user.getPassword().equals(password)) {
-//			ServletActionContext.getResponse()
-//					.addCookie(new Cookie("USER", username));
-//			return SUCCESS;
-//		}
-//
-//		if (username != null || password != null) {
-//			return LOGIN;
-//		}
-//
-//		return INPUT;
 		return SUCCESS;
 	}
 

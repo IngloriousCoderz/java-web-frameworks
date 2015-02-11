@@ -2,6 +2,7 @@ package it.formarete.action;
 
 import it.formarete.model.User;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -11,13 +12,9 @@ public class RestrictedArea extends ActionSupport implements ModelDriven<User> {
 	private String USER;
 	private User user;
 
-	public RestrictedArea() {
-		user = new User();
-		user.setUsername("nobody");
-	}
-
 	@Override
 	public String execute() throws Exception {
+		user = (User) ActionContext.getContext().getValueStack().findValue("user");
 		return SUCCESS;
 	}
 

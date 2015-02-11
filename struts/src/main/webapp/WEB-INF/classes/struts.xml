@@ -23,6 +23,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				class="it.formarete.interceptor.Authentication" />
 
 			<interceptor-stack name="cookie-auth">
+				<interceptor-ref name="defaultStack" />
 				<interceptor-ref name="cookie">
 					<param name="cookiesName">USER</param>
 				</interceptor-ref>
@@ -32,13 +33,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<global-results>
 			<result name="login" type="chain">login</result>
-			<result name="input" type="chain">login.jsp</result>
 		</global-results>
 
-		<action name="login" class="it.formarete.action.Login2">
-			<result name="success" type="redirectAction">${destination}</result>
-			<result name="login">login.jsp</result>
-			<result name="input">login.jsp</result>
+		<action name="login" class="it.formarete.action.LoginForm">
+			<result name="success">login.jsp</result>
 		</action>
 
 		<action name="home" class="it.formarete.action.RestrictedArea">

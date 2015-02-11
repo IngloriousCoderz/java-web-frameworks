@@ -1,5 +1,8 @@
 package it.formarete.action;
 
+import it.formarete.model.User;
+import it.formarete.service.UsersDB;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Login extends ActionSupport {
@@ -10,9 +13,16 @@ public class Login extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		if ("giancarlo".equals(username) && "magalli".equals(password)) {
+		User user = UsersDB.get(username);
+
+		if (user != null && user.getPassword().equals(password)) {
 			return SUCCESS;
 		}
+
+		if (username != null || password != null) {
+			return LOGIN;
+		}
+
 		return INPUT;
 	}
 
