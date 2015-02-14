@@ -1,8 +1,9 @@
 .metadata/
-RemoteSystemsTempFiles/
-Servers/
 desktop.ini
+hiberstruts/target/
 mvc/target/
 quickstart/target/
+RemoteSystemsTempFiles/
+Servers/
 servlet/target/
 struts/target/
