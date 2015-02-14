@@ -1,6 +1,10 @@
 package it.formarete.model;
 
-public class User {
+import it.formarete.service.RegisterDao;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class User extends ActionSupport {
 	private int id;
 	private String name;
 
@@ -21,7 +25,7 @@ public class User {
 	}
 
 	public String execute() {
-		//RegisterDao.saveUser(this);
-		return "success";
+		RegisterDao.saveUser(this);
+		return SUCCESS;
 	}
 }

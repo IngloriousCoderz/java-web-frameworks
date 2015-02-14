@@ -7,15 +7,15 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class RegisterDao {
-	public static int saveUser(User u) {
+	public static int saveUser(User user) {
 		Session session = new Configuration().configure("hibernate.cfg.xml")
 				.buildSessionFactory().openSession();
 
-		Transaction t = session.beginTransaction();
-		int i = (Integer) session.save(u);
-		t.commit();
+		Transaction transaction = session.beginTransaction();
+		int id = (Integer) session.save(user);
+		transaction.commit();
 		session.close();
 
-		return i;
+		return id;
 	}
 }
