@@ -3,6 +3,7 @@ package it.formarete.model;
 import it.formarete.service.EmployeeDAO;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,6 +15,7 @@ public class Employee extends ActionSupport {
 	private static final long serialVersionUID = -3637288302808865450L;
 
 	@Id
+	@GeneratedValue
 	private int id;
 	private String name;
 	private float salary;

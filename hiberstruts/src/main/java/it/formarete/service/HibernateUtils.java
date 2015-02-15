@@ -18,8 +18,4 @@ public class HibernateUtils {
 		}
 		return singleton;
 	}
-
-	public static void closeSessionFactory() {
-		getSessionFactory().close();
-	}
 }
