@@ -1,14 +1,9 @@
 package it.formarete.model;
 
-import it.formarete.service.UserDAO;
-
-import com.opensymphony.xwork2.ActionSupport;
-
-public class User extends ActionSupport {
-	private static final long serialVersionUID = -9178047334886833619L;
-
+public class Employee {
 	private int id;
 	private String name;
+	private float salary;
 
 	public int getId() {
 		return id;
@@ -26,8 +21,11 @@ public class User extends ActionSupport {
 		this.name = name;
 	}
 
-	public String execute() {
-		UserDAO.save(this);
-		return SUCCESS;
+	public float getSalary() {
+		return salary;
+	}
+
+	public void setSalary(float salary) {
+		this.salary = salary;
 	}
 }
