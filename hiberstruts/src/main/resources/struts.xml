@@ -9,8 +9,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>/WEB-INF/classes/jsp/index.jsp</result>
 		</action>
 
-		<action name="register" class="it.formarete.model.User">
-			<result name="success">/WEB-INF/classes/jsp/welcome.jsp</result>
+		<action name="user" class="it.formarete.model.User">
+			<result>/WEB-INF/classes/jsp/user.jsp</result>
+		</action>
+
+		<action name="employee" class="it.formarete.model.Employee">
+			<result>/WEB-INF/classes/jsp/employee.jsp</result>
 		</action>
 	</package>
 </struts>

@@ -4,6 +4,7 @@ import it.formarete.model.Employee;
 
 import java.util.List;
 
+import org.hibernate.FlushMode;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 public class EmployeeDAO {
@@ -11,6 +12,8 @@ public class EmployeeDAO {
 
 	public void setTemplate(HibernateTemplate template) {
 		this.template = template;
+		template.getSessionFactory().getCurrentSession()
+				.setFlushMode(FlushMode.AUTO);
 	}
 
 	public int save(Employee employee) {

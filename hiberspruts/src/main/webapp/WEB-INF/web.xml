@@ -3,7 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	<display-name>Struts2 + Hibernate Example</display-name>
+	<display-name>Struts2 + Spring + Hibernate Example</display-name>
 
 	<filter>
 		<filter-name>struts2</filter-name>

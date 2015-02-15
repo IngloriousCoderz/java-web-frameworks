@@ -3,14 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost/hiberspruts" />
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>
 
-	<bean id="mySessionFactory"
+	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 
@@ -29,8 +30,13 @@
 		</property>
 	</bean>
 
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
 	<bean id="template" class="org.springframework.orm.hibernate4.HibernateTemplate">
-		<property name="sessionFactory" ref="mySessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="employee" class="it.formarete.service.EmployeeDAO">

@@ -27,7 +27,7 @@ public class User extends ActionSupport {
 	}
 
 	public String execute() {
-		UserDAO.save(this);
+		new UserDAO().save(this);
 		return SUCCESS;
 	}
 }

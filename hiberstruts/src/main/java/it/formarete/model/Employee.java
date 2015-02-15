@@ -2,17 +2,18 @@ package it.formarete.model;
 
 import it.formarete.service.EmployeeDAO;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+@Entity
+@Table(name = "employee")
 public class Employee extends ActionSupport {
 	private static final long serialVersionUID = -3637288302808865450L;
 
+	@Id
 	private int id;
 	private String name;
 	private float salary;
@@ -43,10 +44,7 @@ public class Employee extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		Resource resource = new ClassPathResource("applicationContext.xml");
-		BeanFactory factory = new XmlBeanFactory(resource);
-		EmployeeDAO dao = (EmployeeDAO) factory.getBean("employee");
-		dao.save(this);
+		new EmployeeDAO().save(this);
 		return SUCCESS;
 	}
 }

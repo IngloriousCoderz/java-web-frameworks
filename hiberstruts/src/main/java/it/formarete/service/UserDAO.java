@@ -2,12 +2,14 @@ package it.formarete.service;
 
 import it.formarete.model.User;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class UserDAO {
-	public static int save(User user) {
+	public int save(User user) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 		Session session = factory.openSession();
 
@@ -19,7 +21,7 @@ public class UserDAO {
 		return id;
 	}
 
-	public static void update(User user) {
+	public void update(User user) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 		Session session = factory.openSession();
 
@@ -29,7 +31,7 @@ public class UserDAO {
 		session.close();
 	}
 
-	public static void delete(User user) {
+	public void delete(User user) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 		Session session = factory.openSession();
 
@@ -37,5 +39,29 @@ public class UserDAO {
 		session.delete(user);
 		transaction.commit();
 		session.close();
+	}
+
+	public User get(int id) {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+		Session session = factory.openSession();
+
+		Transaction transaction = session.beginTransaction();
+		User user = (User) session.get(User.class, id);
+		transaction.commit();
+		session.close();
+
+		return user;
+	}
+
+	public List<User> getAll() {
+		SessionFactory factory = HibernateUtils.getSessionFactory();
+		Session session = factory.openSession();
+
+		Transaction transaction = session.beginTransaction();
+		List<User> users = (List<User>) session.load(User.class, null);
+		transaction.commit();
+		session.close();
+
+		return users;
 	}
 }
