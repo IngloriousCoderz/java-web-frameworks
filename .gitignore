@@ -1,5 +1,6 @@
 .metadata/
 desktop.ini
+hiberspruts/target/
 hiberstruts/target/
 mvc/target/
 quickstart/target/
