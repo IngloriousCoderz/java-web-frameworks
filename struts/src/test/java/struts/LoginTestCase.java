@@ -17,6 +17,6 @@ public class LoginTestCase extends TestCase {
 		Login login = new Login();
 		login.setUsername("pippo");
 		login.setPassword("baudo");
-		assertEquals(ActionSupport.INPUT, login.execute());
+		assertEquals(ActionSupport.LOGIN, login.execute());
 	}
 }

@@ -5,8 +5,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<constant name="struts.devMode" value="true" />
 
 	<package name="default" extends="struts-default">
+		<action name="">
+			<result>/WEB-INF/classes/jsp/index.jsp</result>
+		</action>
+
 		<action name="register" class="it.formarete.model.User">
-			<result name="success">welcome.jsp</result>
+			<result name="success">/WEB-INF/classes/jsp/welcome.jsp</result>
 		</action>
 	</package>
 </struts>

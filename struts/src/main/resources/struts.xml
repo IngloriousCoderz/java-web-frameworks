@@ -5,14 +5,16 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<constant name="struts.devMode" value="true" />
 	<!-- <constant name="struts.action.extension" value="" /> -->
 
-	<package name="hello" extends="struts-default">
-		<action name="home">
-			<result>/index.jsp</result>
+	<package name="default" extends="struts-default">
+		<action name="">
+			<result>/WEB-INF/classes/jsp/area-protetta/index.jsp</result>
 		</action>
 
 		<action name="login" class="it.formarete.action.Login">
-			<result name="success">/hello.jsp</result>
-			<result name="input">/login-error.jsp</result>
+			<result name="success">/WEB-INF/classes/jsp/area-protetta/hello.jsp
+			</result>
+			<result name="login">/WEB-INF/classes/jsp/area-protetta/login-error.jsp
+			</result>
 		</action>
 	</package>
 
@@ -23,7 +25,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				class="it.formarete.interceptor.Authentication" />
 
 			<interceptor-stack name="authStack">
-<!-- 				<interceptor-ref name="execAndWait" /> -->
 				<interceptor-ref name="defaultStack" />
 				<interceptor-ref name="cookie">
 					<param name="cookiesName">USER</param>
@@ -37,17 +38,18 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</global-results>
 
 		<action name="login" class="it.formarete.action.LoginForm">
-			<result name="success">login.jsp</result>
+			<result name="success">/WEB-INF/classes/jsp/area-protetta/login.jsp
+			</result>
 		</action>
 
 		<action name="home" class="it.formarete.action.RestrictedArea">
 			<interceptor-ref name="authStack" />
-			<result>index.jsp</result>
+			<result>/WEB-INF/classes/jsp/area-protetta/index.jsp</result>
 		</action>
 
 		<action name="gallery" class="it.formarete.action.RestrictedArea">
 			<interceptor-ref name="authStack" />
-			<result>gallery.jsp</result>
+			<result>/WEB-INF/classes/jsp/area-protetta/gallery.jsp</result>
 		</action>
 	</package>
 </struts>
