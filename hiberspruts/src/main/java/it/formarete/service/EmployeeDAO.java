@@ -12,8 +12,8 @@ public class EmployeeDAO {
 
 	public void setTemplate(HibernateTemplate template) {
 		this.template = template;
-		template.getSessionFactory().getCurrentSession()
-				.setFlushMode(FlushMode.AUTO);
+//		template.getSessionFactory().getCurrentSession()
+//				.setFlushMode(FlushMode.AUTO);
 	}
 
 	public int save(Employee employee) {

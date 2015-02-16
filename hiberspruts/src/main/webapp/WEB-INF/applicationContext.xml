@@ -30,16 +30,20 @@
 		</property>
 	</bean>
 
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+<!-- 	<bean id="transactionManager" -->
+<!-- 		class="org.springframework.orm.hibernate4.HibernateTransactionManager"> -->
+<!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->
+<!-- 	</bean> -->
 
 	<bean id="template" class="org.springframework.orm.hibernate4.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="employee" class="it.formarete.service.EmployeeDAO">
+	<bean id="employeeDAO" class="it.formarete.service.EmployeeDAO">
 		<property name="template" ref="template" />
+	</bean>
+
+	<bean id="employee" class="it.formarete.model.Employee">
+		<property name="dao" ref="employeeDAO" />
 	</bean>
 </beans>

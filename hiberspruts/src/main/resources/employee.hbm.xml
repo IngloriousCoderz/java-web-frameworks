@@ -5,7 +5,7 @@
 <hibernate-mapping>
 	<class name="it.formarete.model.Employee" table="employee">
 		<id name="id">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="name" />
 		<property name="salary" />

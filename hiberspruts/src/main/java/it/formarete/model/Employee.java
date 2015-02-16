@@ -2,12 +2,6 @@ package it.formarete.model;
 
 import it.formarete.service.EmployeeDAO;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Employee extends ActionSupport {
@@ -16,6 +10,7 @@ public class Employee extends ActionSupport {
 	private int id;
 	private String name;
 	private float salary;
+	private EmployeeDAO dao;
 
 	public int getId() {
 		return id;
@@ -41,11 +36,19 @@ public class Employee extends ActionSupport {
 		this.salary = salary;
 	}
 
+	public EmployeeDAO getDao() {
+		return dao;
+	}
+
+	public void setDao(EmployeeDAO dao) {
+		this.dao = dao;
+	}
+
 	@Override
 	public String execute() throws Exception {
-		Resource resource = new ClassPathResource("applicationContext.xml");
-		BeanFactory factory = new XmlBeanFactory(resource);
-		EmployeeDAO dao = (EmployeeDAO) factory.getBean("employee");
+		// Resource resource = new ClassPathResource("applicationContext.xml");
+		// BeanFactory factory = new XmlBeanFactory(resource);
+		// EmployeeDAO dao = (EmployeeDAO) factory.getBean("employee");
 		dao.save(this);
 		return SUCCESS;
 	}
