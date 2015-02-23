@@ -8,12 +8,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "employee")
 public class Employee {
-	@Id
-	@GeneratedValue
 	private int id;
 	private String name;
 	private float salary;
 
+	@Id
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}
