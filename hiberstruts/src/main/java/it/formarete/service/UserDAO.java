@@ -5,14 +5,11 @@ import it.formarete.model.User;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class UserDAO {
 	public int save(User user) {
-		SessionFactory factory = HibernateUtils.getSessionFactory();
-		Session session = factory.openSession();
-
+		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		int id = (Integer) session.save(user);
 		transaction.commit();
@@ -22,9 +19,7 @@ public class UserDAO {
 	}
 
 	public void update(User user) {
-		SessionFactory factory = HibernateUtils.getSessionFactory();
-		Session session = factory.openSession();
-
+		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		session.update(user);
 		transaction.commit();
@@ -32,9 +27,7 @@ public class UserDAO {
 	}
 
 	public void delete(User user) {
-		SessionFactory factory = HibernateUtils.getSessionFactory();
-		Session session = factory.openSession();
-
+		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		session.delete(user);
 		transaction.commit();
@@ -42,9 +35,7 @@ public class UserDAO {
 	}
 
 	public User get(int id) {
-		SessionFactory factory = HibernateUtils.getSessionFactory();
-		Session session = factory.openSession();
-
+		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		User user = (User) session.get(User.class, id);
 		transaction.commit();
@@ -53,12 +44,11 @@ public class UserDAO {
 		return user;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<User> getAll() {
-		SessionFactory factory = HibernateUtils.getSessionFactory();
-		Session session = factory.openSession();
-
+		Session session = HibernateUtils.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
-		List<User> users = (List<User>) session.load(User.class, null);
+		List<User> users = session.createCriteria(User.class).list();
 		transaction.commit();
 		session.close();
 

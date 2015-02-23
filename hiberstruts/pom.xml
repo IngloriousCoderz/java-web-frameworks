@@ -5,7 +5,7 @@
 	<artifactId>hiberstruts</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hiberstruts</name>
+	<name>Hibernate + Struts 2 Integration Example</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
