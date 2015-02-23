@@ -5,8 +5,8 @@
 <title>Login richiesto</title>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
+	<jsp:include page="widgets/menu.jsp" />
 	<h1>Devi autenticarti</h1>
-	<jsp:include page="login-form.jsp" />
+	<jsp:include page="widgets/login-form.jsp" />
 </body>
 </html>

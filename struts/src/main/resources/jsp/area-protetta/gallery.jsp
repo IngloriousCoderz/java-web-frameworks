@@ -11,7 +11,7 @@ img {
 </style>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
+	<jsp:include page="widgets/menu.jsp" />
 	<h1>Photogallery di <s:property value="user.username" /></h1>
 	<p><img src="http://tinyurl.com/k3jwlnw" alt="${user.username}" /></p>
 </body>
