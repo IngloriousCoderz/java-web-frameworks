@@ -3,53 +3,48 @@
 Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<constant name="struts.devMode" value="true" />
-	<!-- <constant name="struts.action.extension" value="" /> -->
 
 	<package name="default" extends="struts-default">
 		<action name="">
-			<result>/WEB-INF/classes/jsp/area-protetta/index.jsp</result>
-		</action>
-
-		<action name="login" class="it.formarete.action.Login">
-			<result name="success">/WEB-INF/classes/jsp/area-protetta/hello.jsp
-			</result>
-			<result name="login">/WEB-INF/classes/jsp/area-protetta/login-error.jsp
-			</result>
+			<result>/WEB-INF/classes/jsp/index.jsp</result>
 		</action>
 	</package>
 
 	<package name="area-protetta" namespace="/area-protetta"
 		extends="struts-default">
 		<interceptors>
-			<interceptor name="authentication"
-				class="it.formarete.interceptor.Authentication" />
-
-			<interceptor-stack name="authStack">
+			<interceptor-stack name="userCookieStack">
 				<interceptor-ref name="defaultStack" />
 				<interceptor-ref name="cookie">
 					<param name="cookiesName">USER</param>
+					<param name="cookiesValue">*</param>
 				</interceptor-ref>
-				<interceptor-ref name="authentication" />
+				<interceptor-ref name="cookieProvider" />
 			</interceptor-stack>
 		</interceptors>
 
 		<global-results>
-			<result name="login" type="chain">login</result>
+			<result name="input">/WEB-INF/classes/jsp/area-protetta/login-input.jsp
+			</result>
+			<result name="login">/WEB-INF/classes/jsp/area-protetta/login-error.jsp
+			</result>
 		</global-results>
 
-		<action name="login" class="it.formarete.action.LoginForm">
-			<result name="success">/WEB-INF/classes/jsp/area-protetta/login.jsp
+		<action name="home" class="it.formarete.action.Login">
+			<interceptor-ref name="userCookieStack" />
+			<result name="success">/WEB-INF/classes/jsp/area-protetta/index.jsp
 			</result>
 		</action>
 
-		<action name="home" class="it.formarete.action.RestrictedArea">
-			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/area-protetta/index.jsp</result>
+		<action name="gallery" class="it.formarete.action.Login">
+			<interceptor-ref name="userCookieStack" />
+			<result name="success">/WEB-INF/classes/jsp/area-protetta/gallery.jsp
+			</result>
 		</action>
 
-		<action name="gallery" class="it.formarete.action.RestrictedArea">
-			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/area-protetta/gallery.jsp</result>
+		<action name="logout" class="it.formarete.action.Login" method="logout">
+			<interceptor-ref name="userCookieStack" />
+			<result name="success" type="redirect">/</result>
 		</action>
 	</package>
 </struts>
