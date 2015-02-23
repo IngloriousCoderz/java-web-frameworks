@@ -1,19 +1,13 @@
 package it.formarete.model;
 
-import it.formarete.service.EmployeeDAO;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.opensymphony.xwork2.ActionSupport;
-
 @Entity
 @Table(name = "employee")
-public class Employee extends ActionSupport {
-	private static final long serialVersionUID = -3637288302808865450L;
-
+public class Employee {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -42,11 +36,5 @@ public class Employee extends ActionSupport {
 
 	public void setSalary(float salary) {
 		this.salary = salary;
-	}
-
-	@Override
-	public String execute() throws Exception {
-		new EmployeeDAO().save(this);
-		return SUCCESS;
 	}
 }
