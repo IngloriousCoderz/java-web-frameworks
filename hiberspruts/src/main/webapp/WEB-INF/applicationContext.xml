@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
-	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-	">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+											http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -17,9 +15,15 @@
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 
-		<property name="mappingResources">
+		<!-- <property name="mappingResources"> -->
+		<!-- <list> -->
+		<!-- <value>user.hbm.xml</value> -->
+		<!-- </list> -->
+		<!-- </property> -->
+
+		<property name="annotatedClasses">
 			<list>
-				<value>employee.hbm.xml</value>
+				<value>it.formarete.model.Employee</value>
 			</list>
 		</property>
 
@@ -32,6 +36,7 @@
 		</property>
 	</bean>
 
+	<!-- WARNING: must specify this tx tag plus the transactionManager bean! -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="transactionManager"
