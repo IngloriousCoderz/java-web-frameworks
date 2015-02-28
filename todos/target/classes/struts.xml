@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.action.extension" value="" />
+
+	<package name="default" extends="struts-default">
+		<action name="" class="it.formarete.todos.action.Todos">
+			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+		</action>
+
+		<action name="add" class="it.formarete.todos.action.Todos"
+			method="add">
+			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+		</action>
+
+		<action name="clear" class="it.formarete.todos.action.Todos"
+			method="clear">
+			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+		</action>
+	</package>
+</struts>
