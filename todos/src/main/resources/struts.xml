@@ -15,6 +15,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
 
+		<action name="delete" class="it.formarete.todos.action.Todos" method="delete">
+			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+		</action>
+
 		<action name="clear" class="it.formarete.todos.action.Todos"
 			method="clear">
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>

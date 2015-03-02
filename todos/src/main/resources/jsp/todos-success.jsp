@@ -15,7 +15,13 @@
 	</s:form>
 	<ul>
 		<s:iterator value="todos">
-			<li data-id="<s:property value="id" />"><s:property value="title" /></li>
+			<li>
+				<s:property value="title" />
+				<s:form action="delete">
+					<s:hidden name="id" value="%{id}" />
+					<s:submit value="delete" />
+				</s:form>
+			</li>
 		</s:iterator>
 	</ul>
 	<s:form action="clear">

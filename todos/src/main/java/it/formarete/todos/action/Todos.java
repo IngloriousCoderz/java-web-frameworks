@@ -11,6 +11,7 @@ public class Todos extends ActionSupport {
 	private static final long serialVersionUID = -1224483568541819071L;
 
 	private String title;
+	private int id;
 
 	public String getTitle() {
 		return title;
@@ -18,6 +19,14 @@ public class Todos extends ActionSupport {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public List<Todo> getTodos() {
@@ -34,6 +43,11 @@ public class Todos extends ActionSupport {
 		Todo todo = new Todo();
 		todo.setTitle(title);
 		TodosDB.getInstance().save(todo);
+		return execute();
+	}
+
+	public String delete() {
+		TodosDB.getInstance().delete(id);
 		return execute();
 	}
 

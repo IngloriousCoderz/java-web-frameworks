@@ -3,12 +3,14 @@ package it.formarete.todos.service;
 import it.formarete.todos.model.Todo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TodosDB {
 	private static TodosDB singleton;
 
-	private List<Todo> todos;
+	private Map<Integer, Todo> todos;
 	private int id;
 
 	public static TodosDB getInstance() {
@@ -19,21 +21,26 @@ public class TodosDB {
 	}
 
 	private TodosDB() {
-		todos = new ArrayList<Todo>();
+		todos = new HashMap<Integer, Todo>();
 		id = 0;
 	}
 
 	public int save(Todo todo) {
 		todo.setId(++id);
-		todos.add(todo);
+		todos.put(id, todo);
 		return todo.getId();
 	}
 
 	public List<Todo> getAll() {
-		return todos;
+		return new ArrayList<Todo>(todos.values());
+	}
+
+	public void delete(int id) {
+		todos.remove(id);
 	}
 
 	public void clear() {
 		todos.clear();
+		id = 0;
 	}
 }
