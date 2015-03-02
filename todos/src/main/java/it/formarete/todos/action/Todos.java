@@ -10,8 +10,16 @@ import com.opensymphony.xwork2.ActionSupport;
 public class Todos extends ActionSupport {
 	private static final long serialVersionUID = -1224483568541819071L;
 
+	private Integer id;
 	private String title;
-	private int id;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;
@@ -21,14 +29,6 @@ public class Todos extends ActionSupport {
 		this.title = title;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public List<Todo> getTodos() {
 		return TodosDB.getInstance().getAll();
 	}
@@ -36,14 +36,32 @@ public class Todos extends ActionSupport {
 	@Override
 	public String execute() {
 		title = null;
+		id = null;
 		return SUCCESS;
 	}
 
-	public String add() {
+	public String createOrUpdate() {
+		return id == null ? create() : update();
+	}
+
+	public String create() {
 		Todo todo = new Todo();
 		todo.setTitle(title);
 		TodosDB.getInstance().save(todo);
 		return execute();
+	}
+
+	public String update() {
+		Todo todo = TodosDB.getInstance().get(id);
+		todo.setTitle(title);
+		TodosDB.getInstance().update(todo);
+		return execute();
+	}
+
+	public String edit() {
+		Todo todo = TodosDB.getInstance().get(id);
+		title = todo.getTitle();
+		return SUCCESS;
 	}
 
 	public String delete() {
@@ -51,8 +69,12 @@ public class Todos extends ActionSupport {
 		return execute();
 	}
 
+	public String clearConfirm() {
+		return "confirm";
+	}
+
 	public String clear() {
 		TodosDB.getInstance().clear();
-		return execute();
+		return SUCCESS;
 	}
 }

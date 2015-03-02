@@ -25,18 +25,26 @@ public class TodosDB {
 		id = 0;
 	}
 
+	public Todo get(int id) {
+		return todos.get(id);
+	}
+
 	public int save(Todo todo) {
 		todo.setId(++id);
 		todos.put(id, todo);
 		return todo.getId();
 	}
 
-	public List<Todo> getAll() {
-		return new ArrayList<Todo>(todos.values());
+	public void update(Todo todo) {
+		todos.put(todo.getId(), todo);
 	}
 
 	public void delete(int id) {
 		todos.remove(id);
+	}
+
+	public List<Todo> getAll() {
+		return new ArrayList<Todo>(todos.values());
 	}
 
 	public void clear() {

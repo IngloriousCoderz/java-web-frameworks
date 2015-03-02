@@ -8,15 +8,19 @@
 	<s:a action="">
 		<h1>Todos</h1>
 	</s:a>
-	<p>Add a new todo:</p>
-	<s:form action="add">
+	<s:form action="submit">
 		<s:textfield name="title" label="title" autofocus="true" />
-		<s:submit value="add" />
+		<s:hidden name="id" value="%{id}" />
+		<s:submit value="submit" />
 	</s:form>
 	<ul>
 		<s:iterator value="todos">
 			<li>
 				<s:property value="title" />
+				<s:form action="edit">
+					<s:hidden name="id" value="%{id}" />
+					<s:submit value="edit" />
+				</s:form>
 				<s:form action="delete">
 					<s:hidden name="id" value="%{id}" />
 					<s:submit value="delete" />

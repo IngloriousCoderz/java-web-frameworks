@@ -10,17 +10,33 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
 
-		<action name="add" class="it.formarete.todos.action.Todos"
-			method="add">
+		<action name="submit" class="it.formarete.todos.action.Todos"
+			method="createOrUpdate">
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
 
-		<action name="delete" class="it.formarete.todos.action.Todos" method="delete">
+		<action name="edit" class="it.formarete.todos.action.Todos"
+			method="edit">
+			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+		</action>
+
+		<action name="delete" class="it.formarete.todos.action.Todos"
+			method="delete">
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
 
 		<action name="clear" class="it.formarete.todos.action.Todos"
+			method="clearConfirm">
+			<result name="confirm">/WEB-INF/classes/jsp/cleartodos-confirm.jsp
+			</result>
+		</action>
+
+		<action name="clear-yes" class="it.formarete.todos.action.Todos"
 			method="clear">
+			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+		</action>
+
+		<action name="clear-no" class="it.formarete.todos.action.Todos">
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
 	</package>
