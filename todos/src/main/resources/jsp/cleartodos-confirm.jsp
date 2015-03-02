@@ -11,7 +11,7 @@
 	<s:form action="clear-yes">
 		<s:submit value="Hell yeah!" />
 	</s:form>
-	<s:form action="clear-no">
+	<s:form action="">
 		<s:submit value="No way!" />
 	</s:form>
 </body>

@@ -35,9 +35,5 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			method="clear">
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
-
-		<action name="clear-no" class="it.formarete.todos.action.Todos">
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
-		</action>
 	</package>
 </struts>
