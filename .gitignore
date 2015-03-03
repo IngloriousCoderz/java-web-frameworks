@@ -7,5 +7,6 @@ quickstart/target/
 RemoteSystemsTempFiles/
 Servers/
 servlet/target/
+sessionaware/target/
 struts/target/
 todos/target/

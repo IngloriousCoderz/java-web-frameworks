@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class NewEmployee extends ActionSupport {
+public class RegisterEmployee extends ActionSupport {
 	private static final long serialVersionUID = -4464670203762168320L;
 
 	private String name;
@@ -41,11 +41,14 @@ public class NewEmployee extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		EmployeeDAO dao = new EmployeeDAO();
+
 		Employee employee = new Employee();
 		employee.setName(name);
 		employee.setSalary(salary);
 		dao.save(employee);
+
 		employees = dao.getAll();
+
 		return SUCCESS;
 	}
 }

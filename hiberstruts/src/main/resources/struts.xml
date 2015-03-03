@@ -13,7 +13,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>/WEB-INF/classes/jsp/user.jsp</result>
 		</action>
 
-		<action name="employee" class="it.formarete.action.NewEmployee">
+		<action name="employee" class="it.formarete.action.RegisterEmployee">
 			<result>/WEB-INF/classes/jsp/employee.jsp</result>
 		</action>
 	</package>
