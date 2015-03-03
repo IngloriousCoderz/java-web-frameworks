@@ -1,12 +1,5 @@
 .metadata/
 desktop.ini
-hiberspruts/target/
-hiberstruts/target/
-mvc/target/
-quickstart/target/
 RemoteSystemsTempFiles/
 Servers/
-servlet/target/
-sessionaware/target/
-struts/target/
-todos/target/
+*/target/
