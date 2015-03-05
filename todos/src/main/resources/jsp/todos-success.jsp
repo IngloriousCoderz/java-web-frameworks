@@ -5,25 +5,23 @@
 	<title>Todos</title>
 </head>
 <body>
+	<jsp:include page="widgets/menu.jsp" />
 	<s:a action="">
 		<h1>Todos</h1>
 	</s:a>
 	<s:form action="submit">
 		<s:textfield name="title" label="title" autofocus="true" />
-		<s:hidden name="id" value="%{id}" />
+		<s:hidden name="id" />
 		<s:submit value="submit" />
 	</s:form>
 	<ul>
 		<s:iterator value="todos">
 			<li>
 				<s:property value="title" />
-				<s:form action="edit">
-					<s:hidden name="id" value="%{id}" />
-					<s:submit value="edit" />
-				</s:form>
-				<s:form action="delete">
-					<s:hidden name="id" value="%{id}" />
-					<s:submit value="delete" />
+				<s:form theme="simple">
+					<s:hidden name="id" />
+					<s:submit value="edit" action="edit" />
+					<s:submit value="delete" action="delete" />
 				</s:form>
 			</li>
 		</s:iterator>
