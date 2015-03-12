@@ -2,12 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Errore di login</title>
+<title>Login</title>
 </head>
 <body>
 	<jsp:include page="widgets/menu.jsp" />
-	<h1>Login fallito</h1>
-	<p>Nome utente e password non corrispondono. Riprova per favore</p>
+	<h1>Please Login</h1>
 	<jsp:include page="widgets/login-form.jsp" />
 </body>
 </html>

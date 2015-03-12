@@ -6,16 +6,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UsersDB {
-	private static final Map<String, User> USERS = new HashMap<String, User>();
+	private static UsersDB singleton;
 
-	static {
+	private Map<String, User> users;
+
+	public static UsersDB getInstance() {
+		if (singleton == null) {
+			singleton = new UsersDB();
+		}
+		return singleton;
+	}
+
+	private UsersDB() {
+		users = new HashMap<String, User>();
 		User user = new User();
 		user.setUsername("giancarlo");
 		user.setPassword("magalli");
-		USERS.put(user.getUsername(), user);
+		users.put(user.getUsername(), user);
 	}
 
-	public static User get(String username) {
-		return USERS.get(username);
+	public User get(String username) {
+		return users.get(username);
 	}
 }

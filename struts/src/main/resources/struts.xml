@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts   
-Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<constant name="struts.devMode" value="true" />
+	<constant name="struts.action.extension" value="" />
 
 	<package name="default" extends="struts-default">
 		<action name="">
@@ -10,41 +12,49 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 	</package>
 
-	<package name="area-protetta" namespace="/area-protetta"
+	<package name="restricted-area" namespace="/restricted-area"
 		extends="struts-default">
 		<interceptors>
-			<interceptor-stack name="userCookieStack">
-				<interceptor-ref name="defaultStack" />
+			<interceptor-stack name="authStack">
+				<interceptor-ref name="exception" />
 				<interceptor-ref name="cookie">
-					<param name="cookiesName">USER</param>
+					<param name="cookiesName">login</param>
 					<param name="cookiesValue">*</param>
 				</interceptor-ref>
 				<interceptor-ref name="cookieProvider" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="prepare" />
+				<!-- <interceptor-ref name="defaultStack" /> -->
 			</interceptor-stack>
 		</interceptors>
 
+		<default-interceptor-ref name="authStack" />
+
 		<global-results>
-			<result name="input">/WEB-INF/classes/jsp/area-protetta/login-input.jsp
+			<result name="input">/WEB-INF/classes/jsp/restricted-area/auth-input.jsp
 			</result>
-			<result name="login">/WEB-INF/classes/jsp/area-protetta/login-error.jsp
+			<result name="login">/WEB-INF/classes/jsp/restricted-area/auth-login.jsp
 			</result>
 		</global-results>
 
-		<action name="home" class="it.formarete.action.Login">
-			<interceptor-ref name="userCookieStack" />
-			<result name="success">/WEB-INF/classes/jsp/area-protetta/index.jsp
-			</result>
+		<global-exception-mappings>
+			<exception-mapping result="input"
+				exception="it.formarete.exception.InputException" />
+			<exception-mapping result="login"
+				exception="it.formarete.exception.LoginException" />
+		</global-exception-mappings>
+
+		<action name="home" class="it.formarete.action.Auth">
+			<result>/WEB-INF/classes/jsp/restricted-area/index.jsp</result>
 		</action>
 
-		<action name="gallery" class="it.formarete.action.Login">
-			<interceptor-ref name="userCookieStack" />
-			<result name="success">/WEB-INF/classes/jsp/area-protetta/gallery.jsp
-			</result>
+		<action name="gallery" class="it.formarete.action.Auth">
+			<result>/WEB-INF/classes/jsp/restricted-area/gallery.jsp</result>
 		</action>
 
-		<action name="logout" class="it.formarete.action.Login" method="logout">
-			<interceptor-ref name="userCookieStack" />
-			<result name="success" type="redirect">/</result>
+		<action name="logout" class="it.formarete.action.Auth" method="logout">
+			<interceptor-ref name="defaultStack" />
+			<result type="redirect">/</result>
 		</action>
 	</package>
 </struts>
