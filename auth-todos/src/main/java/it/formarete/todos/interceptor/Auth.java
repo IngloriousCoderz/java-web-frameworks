@@ -17,9 +17,12 @@ public class Auth extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		for (Cookie cookie : ServletActionContext.getRequest().getCookies()) {
-			if (cookie.getName().equals("login")) {
-				return invocation.invoke();
+		Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("login")) {
+					return invocation.invoke();
+				}
 			}
 		}
 

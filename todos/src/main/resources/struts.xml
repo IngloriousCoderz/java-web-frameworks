@@ -7,65 +7,34 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<constant name="struts.mapper.action.prefix.enabled" value="true" />
 
 	<package name="default" extends="struts-default">
-		<interceptors>
-			<interceptor name="auth" class="it.formarete.todos.interceptor.Auth" />
-
-			<interceptor-stack name="authStack">
-				<interceptor-ref name="defaultStack" />
-				<!-- <param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*,username,password</param> -->
-				<!-- </interceptor-ref> -->
-				<interceptor-ref name="auth" />
-			</interceptor-stack>
-		</interceptors>
-
-		<global-results>
-			<result name="login">/WEB-INF/classes/jsp/auth-login.jsp</result>
-			<result name="input">/WEB-INF/classes/jsp/auth-input.jsp</result>
-		</global-results>
-
 		<action name="" class="it.formarete.todos.action.Todos">
-			<interceptor-ref name="authStack" />
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
 
 		<action name="submit" class="it.formarete.todos.action.Todos"
 			method="submit">
-			<interceptor-ref name="authStack" />
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
 
 		<action name="edit" class="it.formarete.todos.action.Todos"
 			method="edit">
-			<interceptor-ref name="authStack" />
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
 
 		<action name="delete" class="it.formarete.todos.action.Todos"
 			method="delete">
-			<interceptor-ref name="authStack" />
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
 
 		<action name="clear" class="it.formarete.todos.action.Todos"
 			method="clearConfirm">
-			<interceptor-ref name="authStack" />
 			<result name="confirm">/WEB-INF/classes/jsp/cleartodos-confirm.jsp
 			</result>
 		</action>
 
 		<action name="clear-yes" class="it.formarete.todos.action.Todos"
 			method="clear">
-			<interceptor-ref name="authStack" />
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
-		</action>
-
-		<action name="login" class="it.formarete.todos.action.Auth">
-			<result type="redirect">/</result>
-		</action>
-
-		<action name="logout" class="it.formarete.todos.action.Auth"
-			method="logout">
-			<result type="redirect">/</result>
 		</action>
 	</package>
 </struts>
