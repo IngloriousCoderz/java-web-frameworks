@@ -9,19 +9,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<package name="default" extends="struts-default">
 		<interceptors>
 			<interceptor name="auth" class="it.formarete.todos.interceptor.Auth" />
-			<interceptor name="cookieAuth"
-				class="it.formarete.todos.interceptor.CookieAuth" />
 
 			<interceptor-stack name="authStack">
-				<interceptor-ref name="defaultStack">
-					<param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*,username,password</param>
-				</interceptor-ref>
-				<!-- <interceptor-ref name="cookie"> -->
-				<!-- <param name="cookiesName">user</param> -->
-				<!-- <param name="cookiesvalue">*</param> -->
+				<interceptor-ref name="defaultStack" />
+				<!-- <param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*,username,password</param> -->
 				<!-- </interceptor-ref> -->
-				<!-- <interceptor-ref name="cookieProvider" /> -->
-				<interceptor-ref name="cookieAuth" />
+				<interceptor-ref name="auth" />
 			</interceptor-stack>
 		</interceptors>
 
@@ -34,14 +27,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<interceptor-ref name="authStack" />
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
-		
-		<action name="home" class="it.formarete.todos.action.Todos">
-			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
-		</action>
 
 		<action name="submit" class="it.formarete.todos.action.Todos"
-			method="createOrUpdate">
+			method="submit">
 			<interceptor-ref name="authStack" />
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
@@ -71,12 +59,13 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
 
-		<!-- <action name="logout" class="it.formarete.todos.action.Logout"> -->
-		<!-- <result type="chain" /> -->
-		<!-- </action> -->
+		<action name="login" class="it.formarete.todos.action.Auth">
+			<result type="redirect">/</result>
+		</action>
 
-		<action name="logout" class="it.formarete.todos.action.CookieLogout">
-			<result type="redirectAction">home</result>
+		<action name="logout" class="it.formarete.todos.action.Auth"
+			method="logout">
+			<result type="redirect">/</result>
 		</action>
 	</package>
 </struts>

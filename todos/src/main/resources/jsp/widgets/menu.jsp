@@ -1,5 +1,3 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
-<s:form action="logout">
-	<s:submit value="logout" />
-</s:form>
+<s:a action="">home</s:a> | <s:a action="logout">logout</s:a>
 <hr>

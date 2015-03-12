@@ -2,18 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Todos</title>
+<title>Todos</title>
 </head>
 <body>
 	<jsp:include page="widgets/menu.jsp" />
-	<s:a action="">
-		<h1>Todos</h1>
-	</s:a>
+
 	<s:form action="submit">
 		<s:textfield name="title" label="title" autofocus="true" />
 		<s:hidden name="id" />
 		<s:submit value="submit" />
 	</s:form>
+
 	<ul>
 		<s:iterator value="todos">
 			<li>
@@ -26,6 +25,7 @@
 			</li>
 		</s:iterator>
 	</ul>
+
 	<s:form action="clear">
 		<s:submit value="clear" />
 	</s:form>

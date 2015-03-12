@@ -23,6 +23,9 @@ public class TodosDB {
 	private TodosDB() {
 		todos = new HashMap<Integer, Todo>();
 		id = 0;
+		save(new Todo("Learn Struts"));
+		save(new Todo("Seek for a job"));
+		save(new Todo("Forget everything"));
 	}
 
 	public Todo get(int id) {

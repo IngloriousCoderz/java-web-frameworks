@@ -3,45 +3,36 @@ package it.formarete.todos.interceptor;
 import it.formarete.todos.model.User;
 import it.formarete.todos.service.UsersDB;
 
-import java.util.Map;
+import javax.servlet.http.Cookie;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.opensymphony.xwork2.util.ValueStack;
 
 public class Auth extends AbstractInterceptor {
-	private static final long serialVersionUID = 8828681928206151678L;
+	private static final long serialVersionUID = -1101281231596857880L;
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		Map<String, Object> session = invocation.getInvocationContext()
-				.getSession();
-		UsersDB db = UsersDB.getInstance();
-
-		String whoami = (String) session.get("user");
-		if (whoami != null) {
-			User user = db.get(whoami);
-			if (user != null) {
+		for (Cookie cookie : ServletActionContext.getRequest().getCookies()) {
+			if (cookie.getName().equals("login")) {
 				return invocation.invoke();
 			}
 		}
 
-		Map<String, Object> params = invocation.getInvocationContext()
-				.getParameters();
-		String[] usernames = (String[]) params.get("username");
-		String[] passwords = (String[]) params.get("password");
-		if (usernames == null && passwords == null) {
-			return Action.LOGIN;
-		}
-
-		String username = usernames[0];
-		String password = passwords[0];
+		ValueStack stack = invocation.getStack();
+		String username = stack.findString("username");
+		String password = stack.findString("password");
 
 		if (username != null) {
-			User user = db.get(username);
+			User user = UsersDB.getInstance().get(username);
 			if (user != null && user.getPassword().equals(password)) {
-				session.put("user", user.getName());
-				return Action.SUCCESS;
+				ServletActionContext.getResponse().addCookie(
+						new Cookie("login", "true"));
+				return invocation.invoke();
 			}
 			return Action.INPUT;
 		}

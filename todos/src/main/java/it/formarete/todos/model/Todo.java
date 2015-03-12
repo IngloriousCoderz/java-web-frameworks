@@ -4,6 +4,13 @@ public class Todo {
 	private int id;
 	private String title;
 
+	public Todo() {
+	}
+
+	public Todo(String title) {
+		this.title = title;
+	}
+
 	public int getId() {
 		return id;
 	}

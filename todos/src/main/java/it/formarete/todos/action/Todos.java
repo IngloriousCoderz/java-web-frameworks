@@ -40,7 +40,7 @@ public class Todos extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public String createOrUpdate() {
+	public String submit() {
 		return id == null ? create() : update();
 	}
 
