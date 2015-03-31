@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+											http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/mytodos" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+
+		<property name="annotatedClasses">
+			<list>
+				<value>it.formarete.mytodos.model.User</value>
+				<value>it.formarete.mytodos.model.Todo</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- DAO -->
+	<bean id="userDao" class="it.formarete.mytodos.service.UserDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="todoDao" class="it.formarete.mytodos.service.TodoDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Model -->
+	<bean id="user" class="it.formarete.mytodos.model.User" />
+	<bean id="todo" class="it.formarete.mytodos.model.Todo" />
+
+	<!-- Struts -->
+	<bean id="authInterceptor" class="it.formarete.mytodos.interceptor.Auth">
+		<property name="dao" ref="userDao" />
+	</bean>
+
+	<bean id="authAction" class="it.formarete.mytodos.action.Auth">
+		<property name="dao" ref="userDao" />
+	</bean>
+
+	<bean id="todosAction" class="it.formarete.mytodos.action.Todos">
+		<property name="dao" ref="todoDao" />
+	</bean>
+</beans>

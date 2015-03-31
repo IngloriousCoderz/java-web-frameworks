@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.action.extension" value="" />
+	<constant name="struts.mapper.action.prefix.enabled" value="true" />
+
+	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor name="auth" class="authInterceptor" />
+
+			<interceptor-stack name="authStack">
+				<interceptor-ref name="defaultStack">
+					<param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*,username,password</param>
+				</interceptor-ref>
+				<interceptor-ref name="auth" />
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="login">/WEB-INF/classes/jsp/auth-login.jsp</result>
+			<result name="input">/WEB-INF/classes/jsp/auth-input.jsp</result>
+			<result name="reload">/WEB-INF/classes/jsp/auth-success.jsp</result>
+		</global-results>
+
+		<action name="" class="todosAction">
+			<interceptor-ref name="authStack" />
+			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+		</action>
+
+		<action name="submit" class="todosAction" method="submit">
+			<interceptor-ref name="authStack" />
+			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+		</action>
+
+		<action name="edit" class="todosAction" method="edit">
+			<interceptor-ref name="authStack" />
+			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+		</action>
+
+		<action name="delete" class="todosAction" method="delete">
+			<interceptor-ref name="authStack" />
+			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+		</action>
+
+		<action name="clear" class="todosAction" method="clearConfirm">
+			<interceptor-ref name="authStack" />
+			<result name="confirm">/WEB-INF/classes/jsp/cleartodos-confirm.jsp
+			</result>
+		</action>
+
+		<action name="clear-yes" class="todosAction" method="clear">
+			<interceptor-ref name="authStack" />
+			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+		</action>
+
+		<action name="login" class="authAction">
+			<result type="redirect">/</result>
+		</action>
+
+		<action name="logout" class="authAction" method="logout">
+			<result type="redirect">/</result>
+		</action>
+	</package>
+</struts>
