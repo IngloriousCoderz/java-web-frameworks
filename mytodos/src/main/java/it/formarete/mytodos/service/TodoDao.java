@@ -1,6 +1,7 @@
 package it.formarete.mytodos.service;
 
 import it.formarete.mytodos.model.Todo;
+import it.formarete.mytodos.model.User;
 
 import java.util.List;
 
@@ -42,6 +43,14 @@ public class TodoDao {
 	@SuppressWarnings("unchecked")
 	public List<Todo> getAll() {
 		return sessionFactory.getCurrentSession().createCriteria(Todo.class).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Todo> getAll(User user) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Todo where owner_id = :owner_id");
+		query.setParameter("owner_id", user.getId());
+		return query.list();
 	}
 
 	public void clear() {

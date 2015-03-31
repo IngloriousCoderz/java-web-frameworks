@@ -53,14 +53,15 @@
 
 	<!-- Struts -->
 	<bean id="authInterceptor" class="it.formarete.mytodos.interceptor.Auth">
-		<property name="dao" ref="userDao" />
+		<property name="userDao" ref="userDao" />
 	</bean>
 
 	<bean id="authAction" class="it.formarete.mytodos.action.Auth">
-		<property name="dao" ref="userDao" />
+		<property name="userDao" ref="userDao" />
 	</bean>
 
 	<bean id="todosAction" class="it.formarete.mytodos.action.Todos">
-		<property name="dao" ref="todoDao" />
+		<property name="todoDao" ref="todoDao" />
+		<property name="userDao" ref="userDao" />
 	</bean>
 </beans>

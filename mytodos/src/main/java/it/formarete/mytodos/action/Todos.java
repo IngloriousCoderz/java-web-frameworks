@@ -1,25 +1,40 @@
 package it.formarete.mytodos.action;
 
 import it.formarete.mytodos.model.Todo;
+import it.formarete.mytodos.model.User;
 import it.formarete.mytodos.service.TodoDao;
+import it.formarete.mytodos.service.UserDao;
 
 import java.util.List;
+
+import javax.servlet.http.Cookie;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Todos extends ActionSupport {
 	private static final long serialVersionUID = -1224483568541819071L;
 
-	private TodoDao dao;
+	private TodoDao todoDao;
+	private UserDao userDao;
 	private Integer id;
 	private String title;
 
-	public TodoDao getDao() {
-		return dao;
+	public TodoDao getTodoDao() {
+		return todoDao;
 	}
 
-	public void setDao(TodoDao dao) {
-		this.dao = dao;
+	public void setTodoDao(TodoDao todoDao) {
+		this.todoDao = todoDao;
+	}
+
+	public UserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
 	}
 
 	public Integer getId() {
@@ -39,7 +54,7 @@ public class Todos extends ActionSupport {
 	}
 
 	public List<Todo> getTodos() {
-		return dao.getAll();
+		return todoDao.getAll(getUser());
 	}
 
 	@Override
@@ -56,25 +71,26 @@ public class Todos extends ActionSupport {
 	public String create() {
 		Todo todo = new Todo();
 		todo.setTitle(title);
-		dao.save(todo);
+		todo.setOwner(getUser());
+		todoDao.save(todo);
 		return execute();
 	}
 
 	public String update() {
-		Todo todo = dao.get(id);
+		Todo todo = todoDao.get(id);
 		todo.setTitle(title);
-		dao.update(todo);
+		todoDao.update(todo);
 		return execute();
 	}
 
 	public String edit() {
-		Todo todo = dao.get(id);
+		Todo todo = todoDao.get(id);
 		title = todo.getTitle();
 		return SUCCESS;
 	}
 
 	public String delete() {
-		dao.delete(id);
+		todoDao.delete(id);
 		return execute();
 	}
 
@@ -83,7 +99,20 @@ public class Todos extends ActionSupport {
 	}
 
 	public String clear() {
-		dao.clear();
+		todoDao.clear();
 		return SUCCESS;
+	}
+
+	private User getUser() {
+		String username = null;
+		Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("login")) {
+					username = cookie.getValue();
+				}
+			}
+		}
+		return userDao.get(username);
 	}
 }

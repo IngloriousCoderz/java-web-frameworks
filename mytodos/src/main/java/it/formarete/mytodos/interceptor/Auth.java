@@ -15,14 +15,14 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 public class Auth extends AbstractInterceptor {
 	private static final long serialVersionUID = -1101281231596857880L;
 
-	private UserDao dao;
+	private UserDao userDao;
 
-	public UserDao getDao() {
-		return dao;
+	public UserDao getUserDao() {
+		return userDao;
 	}
 
-	public void setDao(UserDao dao) {
-		this.dao = dao;
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
 	}
 
 	@Override
@@ -41,10 +41,10 @@ public class Auth extends AbstractInterceptor {
 		String password = request.getParameter("password");
 
 		if (username != null) {
-			User user = dao.get(username);
+			User user = userDao.get(username);
 			if (user != null && user.getPassword().equals(password)) {
 				ServletActionContext.getResponse().addCookie(
-						new Cookie("login", "true"));
+						new Cookie("login", username));
 				return invocation.invoke();
 			}
 			return Action.INPUT;

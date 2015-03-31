@@ -13,17 +13,17 @@ import com.opensymphony.xwork2.ActionSupport;
 public class Auth extends ActionSupport implements ServletResponseAware {
 	private static final long serialVersionUID = -6380365904086570517L;
 
-	private UserDao dao;
+	private UserDao userDao;
 	private String username;
 	private String password;
 	private HttpServletResponse response;
 
-	public UserDao getDao() {
-		return dao;
+	public UserDao getUserDao() {
+		return userDao;
 	}
 
-	public void setDao(UserDao dao) {
-		this.dao = dao;
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
 	}
 
 	public String getUsername() {
@@ -50,9 +50,9 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 	@Override
 	public String execute() {
 		if (username != null) {
-			User user = dao.get(username);
+			User user = userDao.get(username);
 			if (user != null && user.getPassword().equals(password)) {
-				response.addCookie(new Cookie("login", "true"));
+				response.addCookie(new Cookie("login", username));
 				return SUCCESS;
 			}
 			return INPUT;
@@ -62,7 +62,7 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 	}
 
 	public String logout() {
-		Cookie cookie = new Cookie("login", "true");
+		Cookie cookie = new Cookie("login", username);
 		cookie.setMaxAge(0);
 		response.addCookie(cookie);
 		return SUCCESS;

@@ -1,9 +1,13 @@
 package it.formarete.mytodos.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +18,8 @@ public class User {
 	private int id;
 	private String name;
 	private String password;
+	@OneToMany(mappedBy = "owner")
+	private List<Todo> todos;
 
 	public int getId() {
 		return id;
@@ -37,5 +43,21 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<Todo> getTodos() {
+		return todos;
+	}
+
+	public void setTodos(List<Todo> todos) {
+		this.todos = todos;
+	}
+
+	public void addTodo(Todo todo) {
+		if (todos == null) {
+			todos = new ArrayList<Todo>();
+		}
+		todos.add(todo);
+		todo.setOwner(this);
 	}
 }
