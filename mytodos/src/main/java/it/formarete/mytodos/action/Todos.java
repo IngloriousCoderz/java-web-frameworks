@@ -92,6 +92,13 @@ public class Todos extends ActionSupport {
 		return execute();
 	}
 
+	public String toggleDone() {
+		Todo todo = todoDao.get(id);
+		todo.toggleDone();
+		todoDao.update(todo);
+		return execute();
+	}
+
 	public String edit() {
 		Todo todo = todoDao.get(id);
 		title = todo.getTitle();

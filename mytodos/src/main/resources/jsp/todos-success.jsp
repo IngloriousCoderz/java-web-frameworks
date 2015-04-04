@@ -21,6 +21,7 @@
 					<s:hidden name="id" />
 					<s:submit value="edit" action="edit" />
 					<s:submit value="delete" action="delete" />
+					<s:checkbox name="done" label="done" />
 				</s:form>
 			</li>
 		</s:iterator>
@@ -29,5 +30,8 @@
 	<s:form action="clear">
 		<s:submit value="clear" />
 	</s:form>
+
+	<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script src="scripts/todos.js"></script>
 </body>
 </html>

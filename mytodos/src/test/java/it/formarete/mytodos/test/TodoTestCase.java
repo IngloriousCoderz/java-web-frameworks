@@ -2,6 +2,7 @@ package it.formarete.mytodos.test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import it.formarete.mytodos.model.Todo;
 import it.formarete.mytodos.model.User;
@@ -29,7 +30,14 @@ public class TodoTestCase {
 
 	@Test
 	public void testCrud() {
-		User user = userDao.get("giancarlo");
+		User user = new User();
+		user.setName("giancarlo");
+
+		userDao.delete(user);
+		assertNull(userDao.get(user.getName()));
+
+		userDao.save(user);
+		user = userDao.get("giancarlo");
 
 		Todo todo = new Todo();
 		todo.setTitle("Learn Struts");
@@ -54,6 +62,9 @@ public class TodoTestCase {
 		todos = todoDao.getAll(user);
 		assertNotNull(todos);
 		assertTrue(todos.isEmpty());
+
+		userDao.delete(user);
+		assertNull(userDao.get(user.getName()));
 	}
 
 	@After

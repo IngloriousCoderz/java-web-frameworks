@@ -4,6 +4,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.action.extension" value="" />
+	<constant name="struts.action.excludePattern" value="/images/.*,/scripts/.*,/styles/.*" />
 	<constant name="struts.mapper.action.prefix.enabled" value="true" />
 
 	<package name="default" extends="struts-default">
@@ -33,6 +34,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<interceptor-ref name="authStack" />
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
+
+		<action name="toggle-done" class="todosAction" method="toggleDone" />
 
 		<action name="edit" class="todosAction" method="edit">
 			<interceptor-ref name="authStack" />

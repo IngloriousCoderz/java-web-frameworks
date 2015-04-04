@@ -24,6 +24,9 @@ public class UserTestCase {
 
 	@Test
 	public void testCrud() {
+		userDao.clear();
+		assertTrue(userDao.getAll().isEmpty());
+
 		User user = new User();
 		user.setName("admin");
 		user.setPassword("admin");

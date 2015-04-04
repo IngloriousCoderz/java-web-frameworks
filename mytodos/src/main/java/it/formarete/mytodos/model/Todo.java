@@ -43,6 +43,10 @@ public class Todo {
 		this.done = done;
 	}
 
+	public void toggleDone() {
+		this.done = !this.done;
+	}
+
 	public User getOwner() {
 		return owner;
 	}

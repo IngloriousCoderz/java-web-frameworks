@@ -58,6 +58,8 @@ public class UserDao {
 	}
 
 	public void clear() {
+		sessionFactory.getCurrentSession().createQuery("delete from Todo")
+				.executeUpdate();
 		sessionFactory.getCurrentSession().createQuery("delete from User")
 				.executeUpdate();
 	}
