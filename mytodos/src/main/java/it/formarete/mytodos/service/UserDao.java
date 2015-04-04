@@ -4,7 +4,6 @@ import it.formarete.mytodos.model.User;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,10 +20,9 @@ public class UserDao {
 	}
 
 	public User get(String name) {
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from User where name = :name");
-		query.setParameter("name", name);
-		return (User) query.uniqueResult();
+		return (User) sessionFactory.getCurrentSession()
+				.createQuery("from User where name = :name").setParameter("name", name)
+				.uniqueResult();
 	}
 
 	public int save(User user) {
@@ -40,10 +38,18 @@ public class UserDao {
 	}
 
 	public void delete(String name) {
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"delete from User where name = :name");
-		query.setParameter("name", name);
-		query.executeUpdate();
+		User user = get(name);
+		delete(user);
+	}
+
+	public void deleteHQL(String name) {
+		User user = get(name);
+		sessionFactory.getCurrentSession()
+				.createQuery("delete from Todo where owner_id = :id")
+				.setParameter("id", user.getId()).executeUpdate();
+		sessionFactory.getCurrentSession()
+				.createQuery("delete from User where name = :name")
+				.setParameter("name", name).executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")

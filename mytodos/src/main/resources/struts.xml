@@ -61,6 +61,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<action name="register-success" class="authAction" method="register">
 			<result>/WEB-INF/classes/jsp/register-success.jsp</result>
+			<result name="error">/WEB-INF/classes/jsp/register-error.jsp</result>
 		</action>
 
 		<action name="login" class="authAction">

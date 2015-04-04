@@ -81,7 +81,11 @@ public class Auth extends ActionSupport implements ServletRequestAware,
 	public String register() {
 		user.setName(username);
 		user.setPassword(password);
-		userDao.save(user);
+		try {
+			userDao.save(user);
+		} catch (Exception e) {
+			return ERROR;
+		}
 		return login();
 	}
 
@@ -110,8 +114,7 @@ public class Auth extends ActionSupport implements ServletRequestAware,
 				}
 			}
 		}
-		user = userDao.get(username);
-		userDao.delete(user);
+		userDao.delete(username);
 		return logout();
 	}
 }
