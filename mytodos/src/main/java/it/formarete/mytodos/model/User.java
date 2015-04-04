@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class User {
 	private int id;
 	private String name;
 	private String password;
-	@OneToMany(mappedBy = "owner")
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
 	private List<Todo> todos;
 
 	public int getId() {

@@ -16,7 +16,7 @@ public class Todo {
 	private int id;
 	private String title;
 	private boolean done;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User owner;
 
 	public int getId() {
