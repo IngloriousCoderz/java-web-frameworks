@@ -5,6 +5,7 @@ import it.formarete.mytodos.service.UserDao;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -27,7 +28,10 @@ public class Auth extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+
+		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals("login")) {
@@ -36,15 +40,14 @@ public class Auth extends AbstractInterceptor {
 			}
 		}
 
-		HttpServletRequest request = ServletActionContext.getRequest();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
 		if (username != null) {
 			User user = userDao.get(username);
 			if (user != null && user.getPassword().equals(password)) {
-				ServletActionContext.getResponse().addCookie(
-						new Cookie("login", username));
+				response.addCookie(new Cookie("login", username));
+				invocation.getStack().setValue("username", username);
 				return invocation.invoke();
 			}
 			return Action.INPUT;

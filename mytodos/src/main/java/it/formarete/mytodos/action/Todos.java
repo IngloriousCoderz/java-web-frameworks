@@ -18,6 +18,7 @@ public class Todos extends ActionSupport {
 
 	private TodoDao todoDao;
 	private UserDao userDao;
+	private String username;
 	private Integer id;
 	private String title;
 
@@ -35,6 +36,14 @@ public class Todos extends ActionSupport {
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public Integer getId() {
@@ -104,12 +113,13 @@ public class Todos extends ActionSupport {
 	}
 
 	private User getUser() {
-		String username = null;
-		Cookie[] cookies = ServletActionContext.getRequest().getCookies();
-		if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("login")) {
-					username = cookie.getValue();
+		if (username == null) {
+			Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+			if (cookies != null) {
+				for (Cookie cookie : cookies) {
+					if (cookie.getName().equals("login")) {
+						username = cookie.getValue();
+					}
 				}
 			}
 		}
