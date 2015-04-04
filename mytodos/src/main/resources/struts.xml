@@ -55,6 +55,14 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
 		</action>
 
+		<action name="register">
+			<result>/WEB-INF/classes/jsp/register-input.jsp</result>
+		</action>
+
+		<action name="register-success" class="authAction" method="register">
+			<result>/WEB-INF/classes/jsp/register-success.jsp</result>
+		</action>
+
 		<action name="login" class="authAction">
 			<result type="redirect">/</result>
 		</action>

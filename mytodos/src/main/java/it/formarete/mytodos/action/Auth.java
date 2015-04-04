@@ -14,6 +14,7 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 	private static final long serialVersionUID = -6380365904086570517L;
 
 	private UserDao userDao;
+	private User user;
 	private String username;
 	private String password;
 	private HttpServletResponse response;
@@ -24,6 +25,14 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getUsername() {
@@ -50,7 +59,7 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 	@Override
 	public String execute() {
 		if (username != null) {
-			User user = userDao.get(username);
+			user = userDao.get(username);
 			if (user != null && user.getPassword().equals(password)) {
 				response.addCookie(new Cookie("login", username));
 				return SUCCESS;
@@ -59,6 +68,14 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 		}
 
 		return LOGIN;
+	}
+
+	public String register() {
+		user.setName(username);
+		user.setPassword(password);
+		userDao.save(user);
+		response.addCookie(new Cookie("login", username));
+		return SUCCESS;
 	}
 
 	public String logout() {

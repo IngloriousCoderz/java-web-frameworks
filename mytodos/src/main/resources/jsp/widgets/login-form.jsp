@@ -7,3 +7,4 @@
 	</s:iterator>
 	<s:submit value="login" />
 </s:form>
+Don't have an account? <s:a action="register">Sign up</s:a>

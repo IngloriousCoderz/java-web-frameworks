@@ -48,19 +48,22 @@
 	</bean>
 
 	<!-- Model -->
-	<bean id="user" class="it.formarete.mytodos.model.User" />
-	<bean id="todo" class="it.formarete.mytodos.model.Todo" />
+	<bean id="user" class="it.formarete.mytodos.model.User" scope="prototype" />
+	<bean id="todo" class="it.formarete.mytodos.model.Todo" scope="prototype" />
 
 	<!-- Struts -->
 	<bean id="authInterceptor" class="it.formarete.mytodos.interceptor.Auth">
 		<property name="userDao" ref="userDao" />
 	</bean>
 
-	<bean id="authAction" class="it.formarete.mytodos.action.Auth">
+	<bean id="authAction" class="it.formarete.mytodos.action.Auth"
+		scope="prototype">
 		<property name="userDao" ref="userDao" />
+		<property name="user" ref="user" />
 	</bean>
 
-	<bean id="todosAction" class="it.formarete.mytodos.action.Todos">
+	<bean id="todosAction" class="it.formarete.mytodos.action.Todos"
+		scope="prototype">
 		<property name="todoDao" ref="todoDao" />
 		<property name="userDao" ref="userDao" />
 	</bean>
