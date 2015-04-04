@@ -70,5 +70,14 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="logout" class="authAction" method="logout">
 			<result type="redirect">/</result>
 		</action>
+
+		<action name="unregister" class="authAction" method="unregisterConfirm">
+			<result name="confirm">/WEB-INF/classes/jsp/unregister-confirm.jsp
+			</result>
+		</action>
+
+		<action name="unregister-yes" class="authAction" method="unregister">
+			<result>/WEB-INF/classes/jsp/unregister-success.jsp</result>
+		</action>
 	</package>
 </struts>

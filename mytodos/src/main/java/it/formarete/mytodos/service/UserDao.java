@@ -35,6 +35,10 @@ public class UserDao {
 		sessionFactory.getCurrentSession().update(user);
 	}
 
+	public void delete(User user) {
+		sessionFactory.getCurrentSession().delete(user);
+	}
+
 	public void delete(String name) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"delete from User where name = :name");

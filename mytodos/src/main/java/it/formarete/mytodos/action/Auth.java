@@ -4,19 +4,23 @@ import it.formarete.mytodos.model.User;
 import it.formarete.mytodos.service.UserDao;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class Auth extends ActionSupport implements ServletResponseAware {
+public class Auth extends ActionSupport implements ServletRequestAware,
+		ServletResponseAware {
 	private static final long serialVersionUID = -6380365904086570517L;
 
 	private UserDao userDao;
 	private User user;
 	private String username;
 	private String password;
+	private HttpServletRequest request;
 	private HttpServletResponse response;
 
 	public UserDao getUserDao() {
@@ -52,6 +56,11 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 	}
 
 	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+
+	@Override
 	public void setServletResponse(HttpServletResponse response) {
 		this.response = response;
 	}
@@ -61,8 +70,7 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 		if (username != null) {
 			user = userDao.get(username);
 			if (user != null && user.getPassword().equals(password)) {
-				response.addCookie(new Cookie("login", username));
-				return SUCCESS;
+				return login();
 			}
 			return INPUT;
 		}
@@ -74,6 +82,10 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 		user.setName(username);
 		user.setPassword(password);
 		userDao.save(user);
+		return login();
+	}
+
+	public String login() {
 		response.addCookie(new Cookie("login", username));
 		return SUCCESS;
 	}
@@ -83,5 +95,23 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 		cookie.setMaxAge(0);
 		response.addCookie(cookie);
 		return SUCCESS;
+	}
+
+	public String unregisterConfirm() {
+		return "confirm";
+	}
+
+	public String unregister() {
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("login")) {
+					username = cookie.getValue();
+				}
+			}
+		}
+		user = userDao.get(username);
+		userDao.delete(user);
+		return logout();
 	}
 }
