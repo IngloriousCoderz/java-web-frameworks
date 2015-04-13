@@ -90,12 +90,12 @@ public class Auth extends ActionSupport implements ServletRequestAware,
 	}
 
 	public String login() {
-		response.addCookie(new Cookie("login", username));
+		response.addCookie(new Cookie("uuid", "" + user.getId()));
 		return SUCCESS;
 	}
 
 	public String logout() {
-		Cookie cookie = new Cookie("login", username);
+		Cookie cookie = new Cookie("uuid", "" + user.getId());
 		cookie.setMaxAge(0);
 		response.addCookie(cookie);
 		return SUCCESS;
@@ -106,15 +106,16 @@ public class Auth extends ActionSupport implements ServletRequestAware,
 	}
 
 	public String unregister() {
+		Integer id = null;
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("login")) {
-					username = cookie.getValue();
+				if (cookie.getName().equals("uuid")) {
+					id = Integer.parseInt(cookie.getValue());
 				}
 			}
 		}
-		userDao.delete(username);
+		userDao.delete(id);
 		return logout();
 	}
 }

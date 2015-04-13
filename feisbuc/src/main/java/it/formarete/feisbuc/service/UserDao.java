@@ -41,12 +41,13 @@ public class UserDao {
 		sessionFactory.getCurrentSession().delete(user);
 	}
 
-	public void delete(String name) {
-		User user = get(name);
-		delete(user);
+	public void delete(int id) {
+		sessionFactory.getCurrentSession()
+				.createQuery("delete from User where id = :id").setParameter("id", id)
+				.executeUpdate();
 	}
 
-	public void deleteHQL(String name) {
+	public void delete(String name) {
 		sessionFactory.getCurrentSession()
 				.createQuery("delete from User where name = :name")
 				.setParameter("name", name).executeUpdate();
@@ -55,6 +56,19 @@ public class UserDao {
 	@SuppressWarnings("unchecked")
 	public List<User> getAll() {
 		return sessionFactory.getCurrentSession().createCriteria(User.class).list();
+	}
+
+	public void addFriend(User user, User friend) {
+		sessionFactory.getCurrentSession().createQuery("")
+				.setParameter("user_id", user.getId())
+				.setParameter("friend_id", friend.getId()).executeUpdate();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> getFriends(User user) {
+		return sessionFactory.getCurrentSession()
+				.createQuery("select friends from User user where user = :user")
+				.setParameter("user", user).list();
 	}
 
 	public void clear() {

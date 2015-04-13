@@ -1,6 +1,7 @@
 package it.formarete.feisbuc.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -28,25 +29,47 @@ public class UserTestCase {
 		assertTrue(userDao.getAll().isEmpty());
 
 		User user = new User();
-		user.setName("admin");
-		user.setPassword("admin");
+		user.setName("antony");
+		user.setPassword("mistretta");
 
 		int id = userDao.save(user);
 		assertTrue(id > 0);
 
-		user = userDao.get("admin");
+		user = userDao.get("antony");
 		assertNotNull(user);
 
-		user.setPassword("nimda");
+		user.setPassword("attertsim");
 		userDao.update(user);
 
-		user = userDao.get("admin");
-		assertEquals("nimda", user.getPassword());
+		user = userDao.get("antony");
+		assertEquals("attertsim", user.getPassword());
 
-		userDao.delete("admin");
+		userDao.delete("antony");
 
-		user = userDao.get("admin");
+		user = userDao.get("antony");
 		assertNull(user);
+	}
+
+	@Test
+	public void testFriends() {
+		userDao.clear();
+
+		User user = new User();
+		user.setName("antony");
+		user.setPassword("mistretta");
+		userDao.save(user);
+
+		User friend = new User();
+		friend.setName("fabrizio");
+		friend.setPassword("ravalli");
+		userDao.save(friend);
+
+		user = userDao.get("antony");
+		friend = userDao.get("fabrizio");
+		userDao.addFriend(user, friend);
+
+		user = userDao.get("antony");
+		assertFalse(user.getFriends().isEmpty());
 	}
 
 	@After

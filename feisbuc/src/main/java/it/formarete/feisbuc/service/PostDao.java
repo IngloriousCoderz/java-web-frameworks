@@ -41,14 +41,9 @@ public class PostDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Post> getAll() {
-		return sessionFactory.getCurrentSession().createCriteria(Post.class).list();
-	}
-
-	@SuppressWarnings("unchecked")
 	public List<Post> getAll(User user) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from Post where owner = :owner")
+				.createQuery("from Post where owner = :owner order by id desc")
 				.setParameter("owner", user).list();
 	}
 

@@ -1,6 +1,6 @@
 package it.formarete.feisbuc.test;
 
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 import it.formarete.feisbuc.model.Comment;
 import it.formarete.feisbuc.model.Like;
 import it.formarete.feisbuc.model.Post;

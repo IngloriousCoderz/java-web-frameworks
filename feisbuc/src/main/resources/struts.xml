@@ -25,37 +25,26 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result name="reload">/WEB-INF/classes/jsp/auth-success.jsp</result>
 		</global-results>
 
-		<action name="" class="todosAction">
+		<action name="" class="wallAction">
 			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+			<result>/WEB-INF/classes/jsp/wall.jsp</result>
 		</action>
 
-		<action name="submit" class="todosAction" method="submit">
+		<action name="publish" class="wallAction" method="publish">
 			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+			<result>/WEB-INF/classes/jsp/wall.jsp</result>
 		</action>
 
-		<action name="toggle-done" class="todosAction" method="toggleDone" />
+		<action name="toggle-done" class="wallAction" method="toggleDone" />
 
 		<action name="edit" class="todosAction" method="edit">
 			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+			<result>/WEB-INF/classes/jsp/wall.jsp</result>
 		</action>
 
-		<action name="delete" class="todosAction" method="delete">
+		<action name="delete" class="wallAction" method="delete">
 			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
-		</action>
-
-		<action name="clear" class="todosAction" method="clearConfirm">
-			<interceptor-ref name="authStack" />
-			<result name="confirm">/WEB-INF/classes/jsp/cleartodos-confirm.jsp
-			</result>
-		</action>
-
-		<action name="clear-yes" class="todosAction" method="clear">
-			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+			<result>/WEB-INF/classes/jsp/wall.jsp</result>
 		</action>
 
 		<action name="register">

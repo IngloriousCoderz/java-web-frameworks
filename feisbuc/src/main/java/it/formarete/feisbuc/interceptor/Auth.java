@@ -34,7 +34,7 @@ public class Auth extends AbstractInterceptor {
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("login")) {
+				if (cookie.getName().equals("uuid")) {
 					return invocation.invoke();
 				}
 			}
@@ -46,8 +46,8 @@ public class Auth extends AbstractInterceptor {
 		if (username != null) {
 			User user = userDao.get(username);
 			if (user != null && user.getPassword().equals(password)) {
-				response.addCookie(new Cookie("login", username));
-				invocation.getStack().setValue("username", username);
+				response.addCookie(new Cookie("uuid", "" + user.getId()));
+				invocation.getStack().setValue("user", user);
 				return invocation.invoke();
 			}
 			return Action.INPUT;

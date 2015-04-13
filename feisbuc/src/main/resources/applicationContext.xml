@@ -68,9 +68,14 @@
 		<property name="userDao" ref="userDao" />
 	</bean>
 
-	<bean id="authAction" class="it.formarete.feisbuc.action.Auth"
-		scope="prototype">
+	<bean id="authAction" class="it.formarete.feisbuc.action.Auth" scope="prototype">
 		<property name="userDao" ref="userDao" />
 		<property name="user" ref="user" />
+	</bean>
+
+	<bean id="wallAction" class="it.formarete.feisbuc.action.Wall" scope="prototype">
+		<property name="post" ref="post" />
+		<property name="userDao" ref="userDao" />
+		<property name="postDao" ref="postDao" />
 	</bean>
 </beans>
