@@ -1,15 +1,11 @@
 package it.formarete.feisbuc.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Formula;
@@ -23,14 +19,10 @@ public class Post {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User owner;
 	private String text;
-	@OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private List<Like> likes;
-	@OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private List<Comment> comments;
 	@Formula("(select count(l.id) from likes l where l.post_id = id)")
-	private int likesTotal;
+	private int likes;
 	@Formula("(select count(c.id) from comments c where c.post_id = id)")
-	private int commentsTotal;
+	private int comments;
 
 	public int getId() {
 		return id;
@@ -56,35 +48,19 @@ public class Post {
 		this.text = text;
 	}
 
-	public List<Like> getLikes() {
+	public int getLikes() {
 		return likes;
 	}
 
-	public void setLikes(List<Like> likes) {
+	public void setLikes(int likes) {
 		this.likes = likes;
 	}
 
-	public List<Comment> getComments() {
+	public int getComments() {
 		return comments;
 	}
 
-	public void setComments(List<Comment> comments) {
+	public void setComments(int comments) {
 		this.comments = comments;
-	}
-
-	public int getLikesTotal() {
-		return likesTotal;
-	}
-
-	public void setLikesTotal(int likesTotal) {
-		this.likesTotal = likesTotal;
-	}
-
-	public int getCommentsTotal() {
-		return commentsTotal;
-	}
-
-	public void setCommentsTotal(int commentsTotal) {
-		this.commentsTotal = commentsTotal;
 	}
 }

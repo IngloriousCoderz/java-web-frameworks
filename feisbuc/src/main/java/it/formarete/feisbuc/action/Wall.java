@@ -78,10 +78,16 @@ public class Wall extends ActionSupport {
 		this.postDao = postDao;
 	}
 
+	@Override
+	public String execute() {
+		newPostText = null;
+		return SUCCESS;
+	}
+
 	public String publish() {
 		post.setText(newPostText);
 		post.setOwner(getUser());
 		postDao.save(post);
-		return SUCCESS;
+		return execute();
 	}
 }

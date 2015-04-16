@@ -53,7 +53,7 @@ public class LikeTestCase {
 		like.setPost(postDao.get(postId));
 		likeDao.save(like);
 
-		assertTrue(postDao.get(postId).getLikesTotal() > 0);
+		assertTrue(postDao.get(postId).getLikes() > 0);
 	}
 
 	@After

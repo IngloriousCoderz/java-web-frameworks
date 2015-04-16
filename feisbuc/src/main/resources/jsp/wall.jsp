@@ -16,7 +16,7 @@
 		<s:iterator value="posts">
 			<li>
 				<s:property value="text" />
-				<br><s:property value="likesTotal" /> likes, <s:property value="commentsTotal" /> comments
+				<br><s:property value="likes" /> likes, <s:property value="comments" /> comments
 				<s:form theme="simple">
 					<s:hidden name="id" />
 					<s:submit value="like" action="like" />

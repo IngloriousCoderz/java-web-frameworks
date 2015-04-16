@@ -67,11 +67,12 @@ public class UserDao {
 	@SuppressWarnings("unchecked")
 	public List<User> getFriends(User user) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("select friends from User user where user = :user")
+				.createQuery("select user.friends from User user where user = :user")
 				.setParameter("user", user).list();
 	}
 
 	public void clear() {
+
 		sessionFactory.getCurrentSession().createQuery("delete from User")
 				.executeUpdate();
 	}

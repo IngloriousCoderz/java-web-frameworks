@@ -66,10 +66,19 @@ public class UserTestCase {
 
 		user = userDao.get("antony");
 		friend = userDao.get("fabrizio");
-		userDao.addFriend(user, friend);
+		user.setFriends(userDao.getFriends(user));
+		friend.setFriends(userDao.getFriends(friend));
+		user.addFriend(friend);
+		userDao.update(user);
+		userDao.update(friend);
 
 		user = userDao.get("antony");
+		user.setFriends(userDao.getFriends(user));
 		assertFalse(user.getFriends().isEmpty());
+
+		friend = userDao.get("fabrizio");
+		friend.setFriends(userDao.getFriends(friend));
+		assertFalse(friend.getFriends().isEmpty());
 	}
 
 	@After

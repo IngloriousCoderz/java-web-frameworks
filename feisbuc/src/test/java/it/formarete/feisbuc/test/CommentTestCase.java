@@ -64,7 +64,7 @@ public class CommentTestCase {
 		comment.setText("Awesome!");
 		commentDao.save(comment);
 
-		assertTrue(postDao.get(postId).getCommentsTotal() > 0);
+		assertTrue(postDao.get(postId).getComments() > 0);
 	}
 
 	@After

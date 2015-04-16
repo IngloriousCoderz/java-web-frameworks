@@ -24,13 +24,8 @@ public class User {
 	private String name;
 	private String password;
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "user_friends", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
+	@JoinTable(name = "users_friends", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
 	private List<User> friends;
-
-	// @ManyToMany
-	// @JoinTable(name = "user_friends", joinColumns = @JoinColumn(name =
-	// "friend_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-	// private List<User> friendOf;
 
 	public int getId() {
 		return id;
@@ -78,10 +73,10 @@ public class User {
 		}
 		friends.add(user);
 
-		// if (friendOf == null) {
-		// friendOf = new ArrayList<User>();
+		// if (user.friendOf == null) {
+		// user.friendOf = new ArrayList<User>();
 		// }
-		// friendOf.add(user);
+		// user.friendOf.add(this);
 
 		if (!user.getFriends().contains(this)) {
 			user.addFriend(this);
