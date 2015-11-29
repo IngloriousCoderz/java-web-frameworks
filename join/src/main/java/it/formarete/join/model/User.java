@@ -1,9 +1,15 @@
 package it.formarete.join.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +18,11 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String username;
+	@Column(unique = true)
+	private String name;
+	private String password;
+	@OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE)
+	private List<Todo> todos;
 
 	public int getId() {
 		return id;
@@ -22,11 +32,34 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getName() {
+		return name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Todo> getTodos() {
+		return todos;
+	}
+
+	public void setTodos(List<Todo> todos) {
+		this.todos = todos;
+	}
+
+	public void addTodo(Todo todo) {
+		if (todos == null) {
+			todos = new ArrayList<Todo>();
+		}
+		todos.add(todo);
 	}
 }

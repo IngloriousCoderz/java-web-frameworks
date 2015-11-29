@@ -1,7 +1,9 @@
 package it.formarete.join.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import it.formarete.join.model.User;
 import it.formarete.join.service.UserDAO;
 
@@ -12,25 +14,38 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UserTestCase {
 	private ClassPathXmlApplicationContext context;
+	private UserDAO dao;
 
 	@Before
 	public void setUp() {
 		context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		dao = (UserDAO) context.getBean("userDao");
 	}
 
 	@Test
-	public void testUserCreation() {
+	public void testCrud() {
+		dao.clear();
+		assertTrue(dao.getAll().isEmpty());
+
 		User user = (User) context.getBean("user");
-		user.setUsername("giancazzo");
+		user.setName("admin");
+		user.setPassword("admin");
 
-		UserDAO dao = (UserDAO) context.getBean("userDao");
-		dao.save(user);
+		int id = dao.save(user);
+		assertTrue(id > 0);
 
-		user = dao.getByUsername("giancazzo");
-		assertEquals("giancazzo", user.getUsername());
+		user = dao.get("admin");
+		assertNotNull(user);
+
+		user.setPassword("nimda");
+		dao.update(user);
+
+		user = dao.get("admin");
+		assertEquals("nimda", user.getPassword());
 
 		dao.delete(user);
-		user = dao.getByUsername("giancazzo");
+
+		user = dao.get("admin");
 		assertNull(user);
 	}
 
