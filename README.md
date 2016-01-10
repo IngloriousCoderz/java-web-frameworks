@@ -62,21 +62,21 @@ Another use case, to make things more complex: we modeled a rough Facebook-like 
 
 # Reference
 
-https://it.wikipedia.org/wiki/Hypertext_Transfer_Protocol
-https://it.wikipedia.org/wiki/Suite_di_protocolli_Internet
-http://www.javatpoint.com/struts-2-aware-interfaces-tutorial
-http://stackoverflow.com/questions/8406840/is-it-a-good-idea-to-put-jsp-pages-inside-the-web-inf-folder-in-an-apache-struts
-http://www.journaldev.com/2210/struts-2-interceptor-tutorial-with-custom-authentication-interceptor-example
-http://stackoverflow.com/questions/3350554/using-cookies-with-struts-2-and-struts
-http://omkarp.blogspot.it/2007/08/working-with-cookies-in-struts-2-part-2.html
-http://struts.apache.org/docs/convention-plugin.html
-http://www.tutorialspoint.com/hibernate/hibernate_or_mappings.htm
-http://www.mkyong.com/tutorials/hibernate-tutorials/
-http://what-when-how.com/hibernate/legacy-databases-and-custom-sql-hibernate/
-http://www.onjava.com/pub/a/onjava/2004/03/31/clustering.html
-https://developer.jboss.org/wiki/UsingHibernateWithTomcat
-http://www.mkyong.com/spring/maven-spring-hibernate-mysql-example/
-http://www.mkyong.com/struts2/struts-2-spring-integration-example/
-https://docs.jboss.org/hibernate/orm/3.6/reference/en-US/html/collections.html
-https://cwiki.apache.org/confluence/display/WW/Multiple+Submit+Buttons
-http://www.mkyong.com/hibernate/cascade-jpa-hibernate-annotation-common-mistake/
+* https://it.wikipedia.org/wiki/Hypertext_Transfer_Protocol
+* https://it.wikipedia.org/wiki/Suite_di_protocolli_Internet
+* http://www.javatpoint.com/struts-2-aware-interfaces-tutorial
+* http://stackoverflow.com/questions/8406840/is-it-a-good-idea-to-put-jsp-pages-inside-the-web-inf-folder-in-an-apache-struts
+* http://www.journaldev.com/2210/struts-2-interceptor-tutorial-with-custom-authentication-interceptor-example
+* http://stackoverflow.com/questions/3350554/using-cookies-with-struts-2-and-struts
+* http://omkarp.blogspot.it/2007/08/working-with-cookies-in-struts-2-part-2.html
+* http://struts.apache.org/docs/convention-plugin.html
+* http://www.tutorialspoint.com/hibernate/hibernate_or_mappings.htm
+* http://www.mkyong.com/tutorials/hibernate-tutorials/
+* http://what-when-how.com/hibernate/legacy-databases-and-custom-sql-hibernate/
+* http://www.onjava.com/pub/a/onjava/2004/03/31/clustering.html
+* https://developer.jboss.org/wiki/UsingHibernateWithTomcat
+* http://www.mkyong.com/spring/maven-spring-hibernate-mysql-example/
+* http://www.mkyong.com/struts2/struts-2-spring-integration-example/
+* https://docs.jboss.org/hibernate/orm/3.6/reference/en-US/html/collections.html
+* https://cwiki.apache.org/confluence/display/WW/Multiple+Submit+Buttons
+* http://www.mkyong.com/hibernate/cascade-jpa-hibernate-annotation-common-mistake/
