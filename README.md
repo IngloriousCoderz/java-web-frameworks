@@ -20,7 +20,7 @@ Two different ways to implement authentication logic: through a login servlet an
 
 A small digression on how the Publisher/Subscriber pattern works, and how it integrates in an MVC project. In the tests we can see the difference between updating the View directly from the Controller and doing it indirectly by subscribing to changes in the Model.
 
-# struts
+## struts
 
 Our first Struts2 webapp. It basically just implements what we have done in the servlet project, but using Struts Actions. Filtering is implemented here by using the Preparable interface: although it doesn't allow much flexibility, it keeps the authentication logic testable.
 
