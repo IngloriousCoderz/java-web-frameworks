@@ -11,6 +11,6 @@
 		<input type="password" name="password" /><br>
 		<input type="submit" value="login" />
 	</form>
-	<a href="area-protetta">vai all'area protetta</a>
+	<a href="area-protetta/">vai all'area protetta</a>
 </body>
 </html>

@@ -13,7 +13,7 @@ public class LoginTestCase extends TestCase {
 	}
 
 	public void testAlreadyLoggedIn() throws Exception {
-		auth.setLogin("true");
+		auth.setLogin("giancarlo");
 		assertEquals(Action.SUCCESS, auth.execute());
 	}
 
@@ -40,7 +40,7 @@ public class LoginTestCase extends TestCase {
 	}
 
 	public void testLogout() throws Exception {
-		auth.setLogin("true");
+		auth.setLogin("giancarlo");
 		assertEquals("giancarlo", auth.getLogin());
 		assertFalse(auth.getCookies().isEmpty());
 

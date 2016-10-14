@@ -77,7 +77,9 @@ public class Auth extends ActionSupport implements Preparable, CookieProvider {
 				throw new InputException();
 			}
 
-			login = "true";
+			login = username;
+		} else {
+			user = UsersDB.getInstance().get(login);
 		}
 	}
 
