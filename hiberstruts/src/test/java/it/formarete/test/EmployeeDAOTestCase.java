@@ -1,13 +1,19 @@
 package it.formarete.test;
 
-import it.formarete.model.Employee;
-import it.formarete.service.EmployeeDAO;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class EmployeeDAOTestCase extends TestCase {
+import it.formarete.model.Employee;
+import it.formarete.service.EmployeeDAO;
+
+public class EmployeeDAOTestCase {
+	@Test
 	public void testCrud() {
 		Employee employee = new Employee();
 		employee.setName("Antony");
@@ -31,7 +37,7 @@ public class EmployeeDAOTestCase extends TestCase {
 		employee.setSalary(employee.getSalary() * 2);
 		dao.update(employee);
 		employee = dao.get(employee.getId());
-		assertEquals(10900f, employee.getSalary());
+		assertEquals(10900f, employee.getSalary(), 0);
 		employees = dao.getAll();
 		assertEquals(1, employees.size());
 

@@ -4,24 +4,16 @@ public class Controller {
 	private Model model;
 	private View view;
 
-	public void handleInput(String input) {
+	public void handleInput(String input, boolean updateView) {
 		model.setAttribute(input);
-	}
-
-	public void updateView(String attribute) {
-		view.update(attribute);
-	}
-
-	public Model getModel() {
-		return model;
+		if (updateView) {
+			String attribute = model.getAttribute();
+			view.update(attribute);
+		}
 	}
 
 	public void setModel(Model model) {
 		this.model = model;
-	}
-
-	public View getView() {
-		return view;
 	}
 
 	public void setView(View view) {

@@ -1,6 +1,6 @@
 package it.formarete.mvc;
 
-public class Model extends Publisher {
+public class Model extends Observable {
 	private String attribute;
 
 	public String getAttribute() {

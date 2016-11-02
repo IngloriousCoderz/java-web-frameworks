@@ -1,16 +1,16 @@
 package it.formarete.mvc;
 
-public class View implements ISubscriber {
+public class View implements IObserver {
 	private String template;
 	private String output;
 
 	public View() {
-		template = "<h1>Hello ${attribute}!</h1>";
+		template = "<h1>Hello ${variable}!</h1>";
 		update("nobody");
 	}
 
-	public void update(String attribute) {
-		this.output = template.replace("${attribute}", attribute);
+	public void update(String variable) {
+		this.output = template.replace("${variable}", variable);
 	}
 
 	public String getOutput() {
@@ -18,7 +18,7 @@ public class View implements ISubscriber {
 	}
 
 	@Override
-	public void wakeUp(Publisher publisher, String attribute) {
+	public void wakeUp(String attribute) {
 		update(attribute);
 	}
 }

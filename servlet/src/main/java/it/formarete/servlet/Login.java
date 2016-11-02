@@ -12,6 +12,7 @@ public class Login extends HttpServlet {
 	private final static String RIGHT_USERNAME = "giancarlo";
 	private final static String RIGHT_PASSWORD = "magalli";
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String username = request.getParameter("username");

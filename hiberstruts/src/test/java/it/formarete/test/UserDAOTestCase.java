@@ -1,13 +1,19 @@
 package it.formarete.test;
 
-import it.formarete.model.User;
-import it.formarete.service.UserDAO;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class UserDAOTestCase extends TestCase {
+import it.formarete.model.User;
+import it.formarete.service.UserDAO;
+
+public class UserDAOTestCase {
+	@Test
 	public void testCrud() {
 		User user = new User();
 		user.setName("Antony");
