@@ -58,10 +58,10 @@ public class Auth extends ActionSupport implements Preparable, CookieProvider {
 	@Override
 	public Set<Cookie> getCookies() {
 		Set<Cookie> cookies = new HashSet<Cookie>();
-		if (login != null) {
+		//if (login != null) {
 			Cookie cookie = new Cookie("login", login);
 			cookies.add(cookie);
-		}
+		//}
 		return cookies;
 	}
 

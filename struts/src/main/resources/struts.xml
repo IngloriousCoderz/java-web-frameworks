@@ -6,14 +6,13 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.action.extension" value="" />
 
-	<package name="default" extends="struts-default">
-		<action name="">
-			<result>/WEB-INF/classes/jsp/index.jsp</result>
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="home">
+			<result>index.jsp</result>
 		</action>
 	</package>
 
-	<package name="restricted-area" namespace="/restricted-area"
-		extends="struts-default">
+	<package name="restricted-area" namespace="/restricted-area" extends="struts-default">
 		<interceptors>
 			<interceptor-stack name="authStack">
 				<interceptor-ref name="exception" />
@@ -31,30 +30,29 @@
 		<default-interceptor-ref name="authStack" />
 
 		<global-results>
-			<result name="input">/WEB-INF/classes/jsp/restricted-area/auth-input.jsp
-			</result>
-			<result name="login">/WEB-INF/classes/jsp/restricted-area/auth-login.jsp
-			</result>
+			<result name="input">auth-input.jsp</result>
+			<result name="login">auth-login.jsp</result>
 		</global-results>
 
 		<global-exception-mappings>
-			<exception-mapping result="input"
-				exception="it.formarete.exception.InputException" />
-			<exception-mapping result="login"
-				exception="it.formarete.exception.LoginException" />
+			<exception-mapping result="input" exception="it.formarete.exception.InputException" />
+			<exception-mapping result="login" exception="it.formarete.exception.LoginException" />
 		</global-exception-mappings>
 
 		<action name="home" class="it.formarete.action.Auth">
-			<result>/WEB-INF/classes/jsp/restricted-area/index.jsp</result>
+			<result>index.jsp</result>
 		</action>
 
 		<action name="gallery" class="it.formarete.action.Auth">
-			<result>/WEB-INF/classes/jsp/restricted-area/gallery.jsp</result>
+			<result>gallery.jsp</result>
 		</action>
 
 		<action name="logout" class="it.formarete.action.Auth" method="logout">
-			<interceptor-ref name="defaultStack" />
-			<result type="redirect">/</result>
+			<interceptor-ref name="authStack" />
+			<result type="redirectAction">
+				<param name="actionName">home</param>
+				<param name="namespace">/</param>
+			</result>
 		</action>
 	</package>
 </struts>
