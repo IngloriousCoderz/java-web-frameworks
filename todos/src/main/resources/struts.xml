@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts
-Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.action.extension" value="" />
+	<!-- this is needed to have multiple submit buttons in the same form -->
 	<constant name="struts.mapper.action.prefix.enabled" value="true" />
 
 	<package name="default" extends="struts-default">

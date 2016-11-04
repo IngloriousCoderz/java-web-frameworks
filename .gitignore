@@ -1,5 +1,6 @@
-.metadata/
+/.recommenders/
+/.metadata/
+/RemoteSystemsTempFiles/
+/Servers/
+target/
 desktop.ini
-RemoteSystemsTempFiles/
-Servers/
-*/target/

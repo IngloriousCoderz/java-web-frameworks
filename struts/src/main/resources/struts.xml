@@ -7,8 +7,19 @@
 	<constant name="struts.action.extension" value="" />
 
 	<package name="default" namespace="/" extends="struts-default">
+		<!-- keeping JSPs in src/main/resources -->
+		<action name="">
+			<result>/WEB-INF/classes/index.jsp</result>
+		</action>
+
+		<!-- putting JSPs in webapp -->
+		<!-- WARNING: do not use 'index.jsp', it won't work! -->
+		<action name="">
+			<result>home.jsp</result>
+		</action>
+
 		<action name="home">
-			<result>index.jsp</result>
+			<result>home.jsp</result>
 		</action>
 	</package>
 
@@ -40,7 +51,7 @@
 		</global-exception-mappings>
 
 		<action name="home" class="it.formarete.action.Auth">
-			<result>index.jsp</result>
+			<result>home.jsp</result>
 		</action>
 
 		<action name="gallery" class="it.formarete.action.Auth">

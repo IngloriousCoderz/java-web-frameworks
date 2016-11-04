@@ -5,7 +5,11 @@ import java.util.Map;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 
-public class Login implements SessionAware {
+import com.opensymphony.xwork2.ActionSupport;
+
+public class Login extends ActionSupport implements SessionAware {
+	private static final long serialVersionUID = 7707616616073833631L;
+
 	private String name;
 	private String password;
 	private SessionMap<String, Object> session;
@@ -31,19 +35,20 @@ public class Login implements SessionAware {
 		this.session = (SessionMap<String, Object>) session;
 	}
 
+	@Override
 	public String execute() {
 		if ("admin".equals(name) && "admin".equals(password)) {
 			session.put("login", "true");
 			session.put("name", name);
-			return "success";
+			return SUCCESS;
 		}
-		return "login";
+		return LOGIN;
 	}
 
 	public String logout() {
 		if (session != null) {
 			session.invalidate();
 		}
-		return "success";
+		return SUCCESS;
 	}
 }
