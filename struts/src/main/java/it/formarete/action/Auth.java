@@ -16,84 +16,85 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 
 public class Auth extends ActionSupport implements Preparable, CookieProvider {
-	private static final long serialVersionUID = 1063416495504411616L;
 
-	private String login;
-	private String username;
-	private String password;
-	private User user;
+    private static final long serialVersionUID = 1063416495504411616L;
 
-	public String getLogin() {
-		return login;
-	}
+    private String login;
+    private String username;
+    private String password;
+    private User user;
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    public String getLogin() {
+        return login;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	@Override
-	public Set<Cookie> getCookies() {
-		Set<Cookie> cookies = new HashSet<Cookie>();
-		Cookie cookie = new Cookie("login", login);
-		cookies.add(cookie);
-		return cookies;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	@Override
-	public void validate() {
-		if (username == null) {
-			addFieldError("username", "No username provided");
-		}
+    @Override
+    public Set<Cookie> getCookies() {
+        Set<Cookie> cookies = new HashSet<Cookie>();
+        Cookie cookie = new Cookie("login", login);
+        cookies.add(cookie);
+        return cookies;
+    }
 
-		if (password == null) {
-			addFieldError("password", "No password provided");
-		}
-	}
+    @Override
+    public void validate() {
+        if (username == null) {
+            addFieldError("username", "No username provided");
+        }
 
-	@Override
-	public void prepare() {
-		if (login == null) {
-			if (username == null) {
-				throw new LoginException();
-			}
+        if (password == null) {
+            addFieldError("password", "No password provided");
+        }
+    }
 
-			user = UsersDB.getInstance().get(username);
-			if (user == null || !user.getPassword().equals(password)) {
-				throw new InputException();
-			}
+    @Override
+    public void prepare() {
+        if (login == null) {
+            if (username == null) {
+                throw new LoginException();
+            }
 
-			login = username;
-		} else {
-			user = UsersDB.getInstance().get(login);
-		}
-	}
+            user = UsersDB.getInstance().get(username);
+            if (user == null || !user.getPassword().equals(password)) {
+                throw new InputException();
+            }
 
-	public String logout() throws Exception {
-		login = null;
-		return SUCCESS;
-	}
+            login = username;
+        } else {
+            user = UsersDB.getInstance().get(login);
+        }
+    }
+
+    public String logout() throws Exception {
+        login = null;
+        return SUCCESS;
+    }
 }
