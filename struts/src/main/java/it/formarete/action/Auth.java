@@ -58,11 +58,20 @@ public class Auth extends ActionSupport implements Preparable, CookieProvider {
 	@Override
 	public Set<Cookie> getCookies() {
 		Set<Cookie> cookies = new HashSet<Cookie>();
-		//if (login != null) {
-			Cookie cookie = new Cookie("login", login);
-			cookies.add(cookie);
-		//}
+		Cookie cookie = new Cookie("login", login);
+		cookies.add(cookie);
 		return cookies;
+	}
+
+	@Override
+	public void validate() {
+		if (username == null) {
+			addFieldError("username", "No username provided");
+		}
+
+		if (password == null) {
+			addFieldError("password", "No password provided");
+		}
 	}
 
 	@Override

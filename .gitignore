@@ -3,4 +3,5 @@
 /RemoteSystemsTempFiles/
 /Servers/
 target/
+nbproject/private/
 desktop.ini
