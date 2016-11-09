@@ -10,7 +10,8 @@
    <context:component-scan base-package="it.formarete.controller" />
 
    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-      <property name="prefix" value="/WEB-INF/classes/jsp/" />
+      <!--<property name="prefix" value="/WEB-INF/classes/jsp/" />-->
+      <property name="prefix" value="/" />
       <property name="suffix" value=".jsp" />
    </bean>
 
