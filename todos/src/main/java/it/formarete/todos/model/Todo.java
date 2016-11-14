@@ -1,29 +1,30 @@
 package it.formarete.todos.model;
 
 public class Todo {
-	private int id;
-	private String title;
 
-	public Todo() {
-	}
+    private int id;
+    private String title;
 
-	public Todo(String title) {
-		this.title = title;
-	}
+    public Todo() {
+    }
 
-	public int getId() {
-		return id;
-	}
+    public Todo(String title) {
+        this.title = title;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

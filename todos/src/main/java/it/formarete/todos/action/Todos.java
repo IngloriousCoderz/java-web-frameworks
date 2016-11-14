@@ -8,73 +8,76 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Todos extends ActionSupport {
-	private static final long serialVersionUID = -1224483568541819071L;
 
-	private Integer id;
-	private String title;
+    private static final long serialVersionUID = -1224483568541819071L;
+    
+    private static final String CONFIRM = "confirm";
 
-	public Integer getId() {
-		return id;
-	}
+    private Integer id;
+    private String title;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public List<Todo> getTodos() {
-		return TodosDB.getInstance().getAll();
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	@Override
-	public String execute() {
-		title = null;
-		id = null;
-		return SUCCESS;
-	}
+    public List<Todo> getTodos() {
+        return TodosDB.getInstance().getAll();
+    }
 
-	public String submit() {
-		return id == null ? create() : update();
-	}
+    @Override
+    public String execute() {
+        title = null;
+        id = null;
+        return SUCCESS;
+    }
 
-	public String create() {
-		Todo todo = new Todo();
-		todo.setTitle(title);
-		TodosDB.getInstance().save(todo);
-		return execute();
-	}
+    public String submit() {
+        return id == null ? create() : update();
+    }
 
-	public String update() {
-		Todo todo = TodosDB.getInstance().get(id);
-		todo.setTitle(title);
-		TodosDB.getInstance().update(todo);
-		return execute();
-	}
+    public String create() {
+        Todo todo = new Todo();
+        todo.setTitle(title);
+        TodosDB.getInstance().save(todo);
+        return execute();
+    }
 
-	public String edit() {
-		Todo todo = TodosDB.getInstance().get(id);
-		title = todo.getTitle();
-		return SUCCESS;
-	}
+    public String update() {
+        Todo todo = TodosDB.getInstance().get(id);
+        todo.setTitle(title);
+        TodosDB.getInstance().update(todo);
+        return execute();
+    }
 
-	public String delete() {
-		TodosDB.getInstance().delete(id);
-		return execute();
-	}
+    public String edit() {
+        Todo todo = TodosDB.getInstance().get(id);
+        title = todo.getTitle();
+        return SUCCESS;
+    }
 
-	public String clearConfirm() {
-		return "confirm";
-	}
+    public String delete() {
+        TodosDB.getInstance().delete(id);
+        return execute();
+    }
 
-	public String clear() {
-		TodosDB.getInstance().clear();
-		return SUCCESS;
-	}
+    public String clearConfirm() {
+        return CONFIRM;
+    }
+
+    public String clear() {
+        TodosDB.getInstance().clear();
+        return SUCCESS;
+    }
 }

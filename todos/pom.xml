@@ -5,7 +5,7 @@
 	<artifactId>todos</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Simple Todos Web Application in Struts2</name>
+	<name>7. Struts2 TodosMVC</name>
 
 	<dependencies>
 		<dependency>
