@@ -3,67 +3,75 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<constant name="struts.devMode" value="true" />
-	<constant name="struts.action.extension" value="" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.action.extension" value="" />
 
-	<package name="default" namespace="/" extends="struts-default">
-		<!-- keeping JSPs in src/main/resources -->
-		<action name="">
-			<result>/WEB-INF/classes/index.jsp</result>
-		</action>
+    <package name="default" namespace="/" extends="struts-default">
+        <!--<default-action-ref name="home" />-->
+        
+        <!-- keeping JSPs in src/main/resources -->
+        <!--<action name="">
+            <result>/WEB-INF/classes/index.jsp</result>
+        </action>-->
 
-		<!-- putting JSPs in webapp -->
-		<!-- WARNING: do not use 'index.jsp', it won't work! -->
-		<action name="">
-			<result>home.jsp</result>
-		</action>
+        <!-- putting JSPs in webapp -->
+        <!-- WARNING: do not use 'index.jsp', it won't work! -->
+        <action name="">
+            <result>home.jsp</result>
+        </action>
 
-		<action name="home">
-			<result>home.jsp</result>
-		</action>
-	</package>
+        <action name="home">
+            <result>home.jsp</result>
+        </action>
+    </package>
 
-	<package name="restricted-area" namespace="/restricted-area" extends="struts-default">
-		<interceptors>
-			<interceptor-stack name="authStack">
-				<interceptor-ref name="exception" />
-				<interceptor-ref name="cookie">
-					<param name="cookiesName">login</param>
-					<param name="cookiesValue">*</param>
-				</interceptor-ref>
-				<interceptor-ref name="cookieProvider" />
-				<interceptor-ref name="params" />
-				<interceptor-ref name="prepare" />
-				<!-- <interceptor-ref name="defaultStack" /> -->
-			</interceptor-stack>
-		</interceptors>
+    <package name="restricted-area" namespace="/restricted-area" extends="struts-default">
+        <interceptors>
+            <interceptor-stack name="authStack">
+                <interceptor-ref name="exception" />
+                <interceptor-ref name="cookie">
+                    <param name="cookiesName">token</param>
+                    <param name="cookiesValue">*</param>
+                </interceptor-ref>
+                <interceptor-ref name="cookieProvider" />
+                <interceptor-ref name="params" />
+                <interceptor-ref name="prepare" />
+            </interceptor-stack>
+        </interceptors>
 
-		<default-interceptor-ref name="authStack" />
+        <default-interceptor-ref name="authStack" />
+        
+        <!--<default-action-ref name="home" />-->
+        
+        <default-class-ref class="it.formarete.action.Auth" />
 
-		<global-results>
-			<result name="input">auth-input.jsp</result>
-			<result name="login">auth-login.jsp</result>
-		</global-results>
+        <global-results>
+            <result name="input">auth-input.jsp</result>
+            <result name="login">auth-login.jsp</result>
+        </global-results>
 
-		<global-exception-mappings>
-			<exception-mapping result="input" exception="it.formarete.exception.InputException" />
-			<exception-mapping result="login" exception="it.formarete.exception.LoginException" />
-		</global-exception-mappings>
+        <global-exception-mappings>
+            <exception-mapping result="input" exception="it.formarete.exception.InputException" />
+            <exception-mapping result="login" exception="it.formarete.exception.LoginException" />
+        </global-exception-mappings>
 
-		<action name="home" class="it.formarete.action.Auth">
-			<result>home.jsp</result>
-		</action>
+        <action name="">
+            <result>home.jsp</result>
+        </action>
+        
+        <action name="home">
+            <result>home.jsp</result>
+        </action>
 
-		<action name="gallery" class="it.formarete.action.Auth">
-			<result>gallery.jsp</result>
-		</action>
+        <action name="gallery">
+            <result>gallery.jsp</result>
+        </action>
 
-		<action name="logout" class="it.formarete.action.Auth" method="logout">
-			<interceptor-ref name="authStack" />
-			<result type="redirectAction">
-				<param name="actionName">home</param>
-				<param name="namespace">/</param>
-			</result>
-		</action>
-	</package>
+        <action name="logout" method="logout">
+            <result type="redirectAction">
+                <param name="actionName">home</param>
+                <param name="namespace">/</param>
+            </result>
+        </action>
+    </package>
 </struts>

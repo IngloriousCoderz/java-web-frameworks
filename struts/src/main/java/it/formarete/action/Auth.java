@@ -19,29 +19,17 @@ public class Auth extends ActionSupport implements Preparable, CookieProvider {
 
     private static final long serialVersionUID = 1063416495504411616L;
 
-    private String login;
+    private String token;
     private String username;
     private String password;
     private User user;
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getUsername() {
-        return username;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {
@@ -52,14 +40,10 @@ public class Auth extends ActionSupport implements Preparable, CookieProvider {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     @Override
     public Set<Cookie> getCookies() {
         Set<Cookie> cookies = new HashSet<Cookie>();
-        Cookie cookie = new Cookie("login", login);
+        Cookie cookie = new Cookie("token", token);
         cookies.add(cookie);
         return cookies;
     }
@@ -77,24 +61,25 @@ public class Auth extends ActionSupport implements Preparable, CookieProvider {
 
     @Override
     public void prepare() {
-        if (login == null) {
-            if (username == null) {
-                throw new LoginException();
-            }
-
-            user = UsersDB.getInstance().get(username);
-            if (user == null || !user.getPassword().equals(password)) {
-                throw new InputException();
-            }
-
-            login = username;
-        } else {
-            user = UsersDB.getInstance().get(login);
+        if (token != null) {
+            user = UsersDB.getInstance().get(token);
+            return;
         }
+
+        if (username == null) {
+            throw new LoginException();
+        }
+
+        user = UsersDB.getInstance().get(username);
+        if (user == null || !user.getPassword().equals(password)) {
+            throw new InputException();
+        }
+
+        token = username;
     }
 
     public String logout() throws Exception {
-        login = null;
+        token = null;
         return SUCCESS;
     }
 }

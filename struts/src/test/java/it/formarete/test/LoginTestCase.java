@@ -25,7 +25,7 @@ public class LoginTestCase {
 
     @Test
     public void testAlreadyLoggedIn() throws Exception {
-        auth.setLogin("giancarlo");
+        auth.setToken("giancarlo");
         auth.prepare();
     }
 
@@ -57,12 +57,10 @@ public class LoginTestCase {
 
     @Test
     public void testLogout() throws Exception {
-        auth.setLogin("giancarlo");
-        assertEquals("giancarlo", auth.getLogin());
+        auth.setToken("giancarlo");
         assertFalse(auth.getCookies().isEmpty());
 
         assertEquals(Action.SUCCESS, auth.logout());
-        assertNull(auth.getLogin());
         assertFalse(auth.getCookies().isEmpty());
     }
 }
