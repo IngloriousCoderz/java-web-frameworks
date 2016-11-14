@@ -5,7 +5,7 @@
 	<artifactId>auth-todos</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Struts2 Todos webapp with authentication</name>
+	<name>8. auth-todos - Struts2 TodoMVC with authentication</name>
 
 	<dependencies>
 		<dependency>

@@ -5,7 +5,7 @@
 	<artifactId>struts</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>struts</name>
+	<name>5. struts - Struts2 Actions and Interceptors</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>

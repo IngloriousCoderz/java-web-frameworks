@@ -3,13 +3,13 @@
 "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
 "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="default" extends="struts-default">
-		<action name="">
-			<result>/WEB-INF/classes/jsp/index.jsp</result>
-		</action>
+    <package name="default" extends="struts-default">
+        <action name="">
+            <result>index.jsp</result>
+        </action>
 
-		<action name="login" class="login">
-			<result>/WEB-INF/classes/jsp/welcome.jsp</result>
-		</action>
-	</package>
+        <action name="login" class="login">
+            <result>welcome.jsp</result>
+        </action>
+    </package>
 </struts>

@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>mvc</name>
+	<name>4. mvc - Model-View-Controller + Observer pattern</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

@@ -5,7 +5,7 @@
     <artifactId>springmvc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>springmvc</name>
+    <name>10. springmvc - SpringMVC and RESTful web services</name>
 
     <dependencies>
         <dependency>

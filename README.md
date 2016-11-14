@@ -1,6 +1,6 @@
 # FormaReTe
 
-An Eclipse workspace used as benchmark for a course I taught on February-April 2015 about Servlets, JSPs, Struts2, Hibernate and Spring with Maven.
+An Eclipse/NetBeans workspace used as teaching material for a course I'm teaching about Servlets, JSPs, Struts2, Hibernate and Spring with Maven.
 
 As reference documentation I mainly used and adapted tutorials I found online, which are listed at the end of this document. The projects described below are entirely made by me.
 
@@ -40,6 +40,10 @@ Putting it all together we create a TodoMVC app with authentication support. Thi
 
 Spring + Struts. We inject Actions in the struts.xml as Spring beans and prove how flexible it is to inject a property without specifying how it is constructed or which implementation is chosen.
 
+## springmvc
+
+An exercise on SpringMVC, both as an MVC architecture for JSP-based websites and RESTful web services.
+
 ## hiberstruts
 
 Next we introduce Hibernate and integrate it with Struts2. We show two different ways of marking objects as persistent entities (through XML or annotations) and provide a ServletContextListener as a best practice to initialize Hibernate at startup.
@@ -64,6 +68,7 @@ Another use case, to make things more complex: we modeled a rough Facebook-like 
 
 * https://it.wikipedia.org/wiki/Hypertext_Transfer_Protocol
 * https://it.wikipedia.org/wiki/Suite_di_protocolli_Internet
+* http://www.tutorialspoint.com/struts_2/
 * http://www.javatpoint.com/struts-2-aware-interfaces-tutorial
 * http://stackoverflow.com/questions/8406840/is-it-a-good-idea-to-put-jsp-pages-inside-the-web-inf-folder-in-an-apache-struts
 * http://www.journaldev.com/2210/struts-2-interceptor-tutorial-with-custom-authentication-interceptor-example
