@@ -5,7 +5,7 @@
 	<artifactId>feisbuc</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Multi-user todos webapp</name>
+	<name>feisbuc - Facebook clone in Java</name>
 
 	<dependencies>
 		<dependency>

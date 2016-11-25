@@ -5,7 +5,7 @@
 	<artifactId>join</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Join between tables Example</name>
+	<name>join - Join between tables (Hibernate + Spring)</name>
 
 	<dependencies>
 		<dependency>
