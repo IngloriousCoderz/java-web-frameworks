@@ -3,11 +3,12 @@
 Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
     <constant name="struts.devMode" value="true" />
+		<constant name="struts.action.extension" value="" />
 
     <package name="default" extends="struts-default">
         <default-action-ref name="home" />
         
-        <action name="home" class="it.formarete.action.Login" method="execute">
+        <action name="home" class="it.formarete.action.Home" method="execute">
             <result name="success">login-success.jsp</result>
             <result name="login">login-error.jsp</result>
         </action>
@@ -18,7 +19,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
             <result name="login">profile-error.jsp</result>
         </action>
         
-        <action name="logout" class="it.formarete.action.Login" method="logout">
+        <action name="logout" class="it.formarete.action.Home" method="logout">
             <result>logout-success.jsp</result>
         </action>
     </package>

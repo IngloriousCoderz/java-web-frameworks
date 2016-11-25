@@ -7,7 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class Login extends ActionSupport implements SessionAware {
+public class Home extends ActionSupport implements SessionAware {
 
     private static final long serialVersionUID = 7707616616073833631L;
 
@@ -42,12 +42,12 @@ public class Login extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() {
-        if (session.get("login") == "true") {
+        if ("token".equals(session.get("token"))) {
             return SUCCESS;
         }
         
-        if ("admin".equals(name) && "admin".equals(password)) {
-            session.put("login", "true");
+        if ("giancarlo".equals(name) && "magalli".equals(password)) {
+            session.put("token", "token");
             session.put("name", name);
             return SUCCESS;
         }

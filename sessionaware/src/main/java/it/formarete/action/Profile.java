@@ -12,7 +12,7 @@ public class Profile extends ActionSupport {
 	@Override
 	public String execute() {
 		HttpSession session = ServletActionContext.getRequest().getSession(false);
-		if (session == null || session.getAttribute("login") == null) {
+		if (session == null || session.getAttribute("token") == null) {
 			return LOGIN;
 		}
 		return SUCCESS;

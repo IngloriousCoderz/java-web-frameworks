@@ -9,50 +9,61 @@ import java.util.Map;
 
 public class TodosDB {
 
-    private static TodosDB singleton;
+	private static TodosDB singleton;
 
-    private Map<Integer, Todo> todos;
-    private int id;
+	private final Map<Integer, Todo> todos;
+	private int id;
 
-    public static TodosDB getInstance() {
-        if (singleton == null) {
-            singleton = new TodosDB();
-        }
-        return singleton;
-    }
+	public static TodosDB getInstance() {
+		if (singleton == null) {
+			singleton = new TodosDB();
+		}
+		return singleton;
+	}
 
-    private TodosDB() {
-        todos = new HashMap<Integer, Todo>();
-        id = 0;
-        save(new Todo("Learn Struts"));
-        save(new Todo("Seek for a job"));
-        save(new Todo("Forget everything"));
-    }
+	public TodosDB() {
+		todos = new HashMap<Integer, Todo>();
+		id = 0;
+		create("Learn Struts");
+		create("Seek for a job");
+		create("Forget everything");
+	}
 
-    public Todo get(int id) {
-        return todos.get(id);
-    }
+	public Todo get(int id) {
+		return todos.get(id);
+	}
 
-    public int save(Todo todo) {
-        todo.setId(++id);
-        todos.put(id, todo);
-        return todo.getId();
-    }
+	public int create(String title) {
+		Todo todo = new Todo(title);
+		todo.setId(++id);
+		return save(todo);
+	}
+	
+	public int save(Todo todo) {
+		todos.put(id, todo);
+		return todo.getId();
+	}
 
-    public void update(Todo todo) {
-        todos.put(todo.getId(), todo);
-    }
+	public void update(int id, String title) {
+		Todo todo = todos.get(id);
+		todo.setTitle(title);
+		todos.put(id, todo); // useless, but more DB-ish
+	}
+	
+	public void update(Todo todo) {
+		todos.put(todo.getId(), todo);
+	}
 
-    public void delete(int id) {
-        todos.remove(id);
-    }
+	public void delete(int id) {
+		todos.remove(id);
+	}
 
-    public List<Todo> getAll() {
-        return new ArrayList<Todo>(todos.values());
-    }
+	public List<Todo> getAll() {
+		return new ArrayList<Todo>(todos.values());
+	}
 
-    public void clear() {
-        todos.clear();
-        id = 0;
-    }
+	public void clear() {
+		todos.clear();
+		id = 0;
+	}
 }

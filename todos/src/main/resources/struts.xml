@@ -3,40 +3,37 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-    <constant name="struts.devMode" value="true" />
-    <constant name="struts.action.extension" value="" />
-    <!-- this is needed to have multiple submit buttons in the same form -->
-    <constant name="struts.mapper.action.prefix.enabled" value="true" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.action.extension" value="" />
+	<!-- this is needed to have multiple submit buttons in the same form -->
+	<constant name="struts.mapper.action.prefix.enabled" value="true" />
 
-    <package name="default" extends="struts-default">
-        <action name="" class="it.formarete.todos.action.Todos">
-            <result>todos-success.jsp</result>
-        </action>
+	<package name="default" extends="struts-default">
+		<default-action-ref name="home" />
+		<default-class-ref class="it.formarete.todos.action.Todos" />
+		
+		<action name="home">
+			<result>todos-success.jsp</result>
+		</action>
 
-        <action name="submit" class="it.formarete.todos.action.Todos"
-                        method="submit">
-            <result>todos-success.jsp</result>
-        </action>
+		<action name="submit" method="submit">
+			<result>todos-success.jsp</result>
+		</action>
 
-        <action name="edit" class="it.formarete.todos.action.Todos"
-                        method="edit">
-            <result>todos-success.jsp</result>
-        </action>
+		<action name="edit" method="edit">
+			<result>todos-success.jsp</result>
+		</action>
 
-        <action name="delete" class="it.formarete.todos.action.Todos"
-                        method="delete">
-            <result>todos-success.jsp</result>
-        </action>
+		<action name="delete" method="delete">
+			<result>todos-success.jsp</result>
+		</action>
 
-        <action name="clear" class="it.formarete.todos.action.Todos"
-                        method="clearConfirm">
-            <result name="confirm">cleartodos-confirm.jsp
-            </result>
-        </action>
+		<action name="clear">
+			<result>cleartodos-confirm.jsp</result>
+		</action>
 
-        <action name="clear-yes" class="it.formarete.todos.action.Todos"
-                        method="clear">
-            <result>todos-success.jsp</result>
-        </action>
-    </package>
+		<action name="clear-yes" method="clear">
+			<result>todos-success.jsp</result>
+		</action>
+	</package>
 </struts>
