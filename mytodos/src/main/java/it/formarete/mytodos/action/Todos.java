@@ -110,14 +110,10 @@ public class Todos extends ActionSupport {
 		todoDao.delete(id);
 		return execute();
 	}
-
-	public String clearConfirm() {
-		return "confirm";
-	}
-
+	
 	public String clear() {
 		todoDao.clear();
-		return SUCCESS;
+		return execute();
 	}
 
 	private User getUser() {

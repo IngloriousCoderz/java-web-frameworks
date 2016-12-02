@@ -28,6 +28,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<interceptor-ref name="authStack" />
 			<result>todos-success.jsp</result>
 		</action>
+		
+		<action name="home" class="it.formarete.todos.action.Todos">
+			<interceptor-ref name="authStack" />
+			<result>todos-success.jsp</result>
+		</action>
 
 		<action name="submit" class="it.formarete.todos.action.Todos"
 						method="submit">
@@ -47,15 +52,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>todos-success.jsp</result>
 		</action>
 
-		<action name="clear" class="it.formarete.todos.action.Todos"
-						method="clearConfirm">
+		<action name="clear" class="it.formarete.todos.action.Todos">
 			<interceptor-ref name="authStack" />
-			<result name="confirm">cleartodos-confirm.jsp
-			</result>
+			<result>cleartodos-confirm.jsp</result>
 		</action>
 
-		<action name="clear-yes" class="it.formarete.todos.action.Todos"
-						method="clear">
+		<action name="clear-yes" class="it.formarete.todos.action.Todos" method="clear">
 			<interceptor-ref name="authStack" />
 			<result>todos-success.jsp</result>
 		</action>

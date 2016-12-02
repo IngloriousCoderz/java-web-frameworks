@@ -70,12 +70,8 @@ public class Todos extends ActionSupport {
 		return execute();
 	}
 
-	public String clearConfirm() {
-		return "confirm";
-	}
-
 	public String clear() {
 		TodosDB.getInstance().clear();
-		return SUCCESS;
+		return execute();
 	}
 }
