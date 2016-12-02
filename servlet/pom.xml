@@ -5,7 +5,7 @@
 	<artifactId>servlet</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>3. servlet - Servlets, JSPs, Filters</name>
+	<name>02. servlet - Servlets, JSPs, Filters</name>
 	<description>Example with servlets and JSPs, all configured with Maven.</description>
 	<url>http://maven.apache.org</url>
 

@@ -5,7 +5,7 @@
 	<artifactId>join</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>join - Join between tables (Hibernate + Spring)</name>
+	<name>13. join - Join between tables (Hibernate + Spring)</name>
 
 	<dependencies>
 		<dependency>

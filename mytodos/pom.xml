@@ -5,7 +5,7 @@
 	<artifactId>mytodos</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mytodos - Multi-user todos webapp</name>
+	<name>14. mytodos - Multi-user todos webapp</name>
 
 	<dependencies>
 		<dependency>

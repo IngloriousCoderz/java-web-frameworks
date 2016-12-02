@@ -5,7 +5,7 @@
 	<artifactId>feisbuc</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>feisbuc - Facebook clone in Java</name>
+	<name>15. feisbuc - Facebook clone in Java</name>
 
 	<dependencies>
 		<dependency>

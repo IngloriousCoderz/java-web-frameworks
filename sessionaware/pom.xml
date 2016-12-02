@@ -5,7 +5,7 @@
     <artifactId>sessionaware</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>6. sessionaware - Struts2 SessionAware and i18n</name>
+    <name>05. sessionaware - Struts2 SessionAware and i18n</name>
 
     <dependencies>
         <dependency>
