@@ -11,6 +11,7 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Auth extends ActionSupport implements ServletResponseAware {
+
 	private static final long serialVersionUID = -6380365904086570517L;
 
 	private String username;

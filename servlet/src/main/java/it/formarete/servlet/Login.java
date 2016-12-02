@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Login extends HttpServlet {
+
 	private static final long serialVersionUID = -8283079335409541319L;
 
 	private final static String RIGHT_USERNAME = "giancarlo";
@@ -14,7 +15,7 @@ public class Login extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
@@ -23,7 +24,7 @@ public class Login extends HttpServlet {
 			request.getRequestDispatcher("/hello.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/login-error.jsp").forward(request,
-					response);
+							response);
 		}
 	}
 }

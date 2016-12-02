@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public class LikeDao {
+
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -35,7 +36,7 @@ public class LikeDao {
 
 	public void delete(int id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"delete from Like where id = :id");
+						"delete from Like where id = :id");
 		query.setParameter("id", id);
 		query.executeUpdate();
 	}
@@ -48,12 +49,12 @@ public class LikeDao {
 	@SuppressWarnings("unchecked")
 	public List<Like> getAll(Post post) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from Like where post = :post").setParameter("post", post)
-				.list();
+						.createQuery("from Like where post = :post").setParameter("post", post)
+						.list();
 	}
 
 	public void clear() {
 		sessionFactory.getCurrentSession().createQuery("delete from Like")
-				.executeUpdate();
+						.executeUpdate();
 	}
 }

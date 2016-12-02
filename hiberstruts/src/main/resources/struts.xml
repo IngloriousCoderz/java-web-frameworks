@@ -7,15 +7,15 @@
 
 	<package name="default" extends="struts-default">
 		<action name="">
-			<result>/WEB-INF/classes/jsp/index.jsp</result>
+			<result>index.jsp</result>
 		</action>
 
 		<action name="user" class="it.formarete.model.User">
-			<result>/WEB-INF/classes/jsp/user.jsp</result>
+			<result>user.jsp</result>
 		</action>
 
 		<action name="employee" class="it.formarete.action.RegisterEmployee">
-			<result>/WEB-INF/classes/jsp/employee.jsp</result>
+			<result>employee.jsp</result>
 		</action>
 	</package>
 </struts>

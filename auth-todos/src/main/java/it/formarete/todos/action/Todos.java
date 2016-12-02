@@ -8,6 +8,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Todos extends ActionSupport {
+
 	private static final long serialVersionUID = -1224483568541819071L;
 
 	private Integer id;

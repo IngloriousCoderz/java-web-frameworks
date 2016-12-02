@@ -16,51 +16,51 @@ import it.formarete.exception.LoginException;
 
 public class LoginTestCase {
 
-    private Auth auth;
+	private Auth auth;
 
-    @Before
-    public void setUp() {
-        auth = new Auth();
-    }
+	@Before
+	public void setUp() {
+		auth = new Auth();
+	}
 
-    @Test
-    public void testAlreadyLoggedIn() throws Exception {
-        auth.setToken("giancarlo");
-        auth.prepare();
-    }
+	@Test
+	public void testAlreadyLoggedIn() throws Exception {
+		auth.setToken("giancarlo");
+		auth.prepare();
+	}
 
-    @Test(expected = LoginException.class)
-    public void testNoLoginAttempts() throws Exception {
-        auth.prepare();
-    }
+	@Test(expected = LoginException.class)
+	public void testNoLoginAttempts() throws Exception {
+		auth.prepare();
+	}
 
-    @Test(expected = InputException.class)
-    public void testWrongUsername() throws Exception {
-        auth.setUsername("pippo");
-        auth.setPassword("baudo");
-        auth.prepare();
-    }
+	@Test(expected = InputException.class)
+	public void testWrongUsername() throws Exception {
+		auth.setUsername("pippo");
+		auth.setPassword("baudo");
+		auth.prepare();
+	}
 
-    @Test(expected = InputException.class)
-    public void testWrongPassword() throws Exception {
-        auth.setUsername("giancarlo");
-        auth.setPassword("nonparlo");
-        auth.prepare();
-    }
+	@Test(expected = InputException.class)
+	public void testWrongPassword() throws Exception {
+		auth.setUsername("giancarlo");
+		auth.setPassword("nonparlo");
+		auth.prepare();
+	}
 
-    @Test
-    public void testSuccessfulLogin() throws Exception {
-        auth.setUsername("giancarlo");
-        auth.setPassword("magalli");
-        auth.prepare();
-    }
+	@Test
+	public void testSuccessfulLogin() throws Exception {
+		auth.setUsername("giancarlo");
+		auth.setPassword("magalli");
+		auth.prepare();
+	}
 
-    @Test
-    public void testLogout() throws Exception {
-        auth.setToken("giancarlo");
-        assertFalse(auth.getCookies().isEmpty());
+	@Test
+	public void testLogout() throws Exception {
+		auth.setToken("giancarlo");
+		assertFalse(auth.getCookies().isEmpty());
 
-        assertEquals(Action.SUCCESS, auth.logout());
-        assertFalse(auth.getCookies().isEmpty());
-    }
+		assertEquals(Action.SUCCESS, auth.logout());
+		assertFalse(auth.getCookies().isEmpty());
+	}
 }

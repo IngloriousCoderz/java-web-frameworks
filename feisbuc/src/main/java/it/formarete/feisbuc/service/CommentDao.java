@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public class CommentDao {
+
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -35,7 +36,7 @@ public class CommentDao {
 
 	public void delete(int id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"delete from Comment where id = :id");
+						"delete from Comment where id = :id");
 		query.setParameter("id", id);
 		query.executeUpdate();
 	}
@@ -43,18 +44,18 @@ public class CommentDao {
 	@SuppressWarnings("unchecked")
 	public List<Comment> getAll() {
 		return sessionFactory.getCurrentSession().createCriteria(Comment.class)
-				.list();
+						.list();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Comment> getAll(Post post) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from Comment where post = :post")
-				.setParameter("post", post).list();
+						.createQuery("from Comment where post = :post")
+						.setParameter("post", post).list();
 	}
 
 	public void clear() {
 		sessionFactory.getCurrentSession().createQuery("delete from Comment")
-				.executeUpdate();
+						.executeUpdate();
 	}
 }

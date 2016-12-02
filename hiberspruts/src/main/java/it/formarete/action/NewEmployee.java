@@ -8,6 +8,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class NewEmployee extends ActionSupport {
+
 	private static final long serialVersionUID = -4464670203762168320L;
 
 	private String name;

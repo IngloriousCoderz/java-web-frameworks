@@ -3,6 +3,7 @@ package it.formarete.model;
 import java.io.Serializable;
 
 public class User implements Serializable {
+
 	private static final long serialVersionUID = 7599042086887426624L;
 
 	private String username;

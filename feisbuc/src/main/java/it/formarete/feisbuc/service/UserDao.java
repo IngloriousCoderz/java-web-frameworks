@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public class UserDao {
+
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -25,8 +26,8 @@ public class UserDao {
 
 	public User get(String name) {
 		return (User) sessionFactory.getCurrentSession()
-				.createQuery("from User where name = :name").setParameter("name", name)
-				.uniqueResult();
+						.createQuery("from User where name = :name").setParameter("name", name)
+						.uniqueResult();
 	}
 
 	public int save(User user) {
@@ -43,14 +44,14 @@ public class UserDao {
 
 	public void delete(int id) {
 		sessionFactory.getCurrentSession()
-				.createQuery("delete from User where id = :id").setParameter("id", id)
-				.executeUpdate();
+						.createQuery("delete from User where id = :id").setParameter("id", id)
+						.executeUpdate();
 	}
 
 	public void delete(String name) {
 		sessionFactory.getCurrentSession()
-				.createQuery("delete from User where name = :name")
-				.setParameter("name", name).executeUpdate();
+						.createQuery("delete from User where name = :name")
+						.setParameter("name", name).executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -60,20 +61,20 @@ public class UserDao {
 
 	public void addFriend(User user, User friend) {
 		sessionFactory.getCurrentSession().createQuery("")
-				.setParameter("user_id", user.getId())
-				.setParameter("friend_id", friend.getId()).executeUpdate();
+						.setParameter("user_id", user.getId())
+						.setParameter("friend_id", friend.getId()).executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<User> getFriends(User user) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("select user.friends from User user where user = :user")
-				.setParameter("user", user).list();
+						.createQuery("select user.friends from User user where user = :user")
+						.setParameter("user", user).list();
 	}
 
 	public void clear() {
 
 		sessionFactory.getCurrentSession().createQuery("delete from User")
-				.executeUpdate();
+						.executeUpdate();
 	}
 }

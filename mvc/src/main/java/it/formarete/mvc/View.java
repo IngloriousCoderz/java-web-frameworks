@@ -1,6 +1,7 @@
 package it.formarete.mvc;
 
 public class View implements IObserver {
+
 	private String template;
 	private String output;
 

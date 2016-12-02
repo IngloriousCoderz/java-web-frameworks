@@ -14,6 +14,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Wall extends ActionSupport {
+
 	private static final long serialVersionUID = -8397577473314811242L;
 
 	private User user;

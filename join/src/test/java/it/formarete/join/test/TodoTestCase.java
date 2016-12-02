@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TodoTestCase {
+
 	private ClassPathXmlApplicationContext context;
 	private TodoDAO todoDao;
 	private UserDAO userDao;
@@ -61,7 +62,7 @@ public class TodoTestCase {
 		assertTrue(todo.isDone());
 
 		userDao.delete(user);
-		
+
 		todoDao.delete(id);
 
 		todos = todoDao.getAll(user);

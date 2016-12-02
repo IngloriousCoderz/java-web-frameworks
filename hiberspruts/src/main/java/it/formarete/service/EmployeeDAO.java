@@ -8,6 +8,7 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 public class EmployeeDAO {
+
 	private HibernateTemplate template;
 
 	public void setTemplate(HibernateTemplate template) {

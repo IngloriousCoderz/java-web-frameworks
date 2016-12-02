@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public class TodoDao {
+
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -35,7 +36,7 @@ public class TodoDao {
 
 	public void delete(int id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"delete from Todo where id = :id");
+						"delete from Todo where id = :id");
 		query.setParameter("id", id);
 		query.executeUpdate();
 	}
@@ -48,13 +49,13 @@ public class TodoDao {
 	@SuppressWarnings("unchecked")
 	public List<Todo> getAll(User user) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from Todo where owner_id = :owner_id");
+						"from Todo where owner_id = :owner_id");
 		query.setParameter("owner_id", user.getId());
 		return query.list();
 	}
 
 	public void clear() {
 		sessionFactory.getCurrentSession().createQuery("delete from Todo")
-				.executeUpdate();
+						.executeUpdate();
 	}
 }

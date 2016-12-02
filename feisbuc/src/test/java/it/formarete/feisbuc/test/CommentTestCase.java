@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class CommentTestCase {
+
 	private ClassPathXmlApplicationContext context;
 	private CommentDao commentDao;
 	private LikeDao likeDao;

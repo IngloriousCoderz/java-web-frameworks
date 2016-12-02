@@ -1,6 +1,7 @@
 package it.formarete.mvc;
 
 public class Model extends Observable {
+
 	private String attribute;
 
 	public String getAttribute() {

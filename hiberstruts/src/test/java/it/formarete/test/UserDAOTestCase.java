@@ -13,6 +13,7 @@ import it.formarete.model.User;
 import it.formarete.service.UserDAO;
 
 public class UserDAOTestCase {
+
 	@Test
 	public void testCrud() {
 		User user = new User();

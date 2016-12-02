@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public class UserDao {
+
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -21,8 +22,8 @@ public class UserDao {
 
 	public User get(String name) {
 		return (User) sessionFactory.getCurrentSession()
-				.createQuery("from User where name = :name").setParameter("name", name)
-				.uniqueResult();
+						.createQuery("from User where name = :name").setParameter("name", name)
+						.uniqueResult();
 	}
 
 	public int save(User user) {
@@ -45,11 +46,11 @@ public class UserDao {
 	public void deleteHQL(String name) {
 		User user = get(name);
 		sessionFactory.getCurrentSession()
-				.createQuery("delete from Todo where owner_id = :id")
-				.setParameter("id", user.getId()).executeUpdate();
+						.createQuery("delete from Todo where owner_id = :id")
+						.setParameter("id", user.getId()).executeUpdate();
 		sessionFactory.getCurrentSession()
-				.createQuery("delete from User where name = :name")
-				.setParameter("name", name).executeUpdate();
+						.createQuery("delete from User where name = :name")
+						.setParameter("name", name).executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -59,8 +60,8 @@ public class UserDao {
 
 	public void clear() {
 		sessionFactory.getCurrentSession().createQuery("delete from Todo")
-				.executeUpdate();
+						.executeUpdate();
 		sessionFactory.getCurrentSession().createQuery("delete from User")
-				.executeUpdate();
+						.executeUpdate();
 	}
 }

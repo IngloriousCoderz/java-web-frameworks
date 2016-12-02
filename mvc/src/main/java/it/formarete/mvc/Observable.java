@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Observable {
+
 	private List<IObserver> observers;
 
 	public Observable() {

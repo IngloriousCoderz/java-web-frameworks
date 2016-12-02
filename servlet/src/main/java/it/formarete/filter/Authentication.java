@@ -14,13 +14,14 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 public class Authentication implements Filter {
+
 	@Override
 	public void init(FilterConfig config) throws ServletException {
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+					FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		User user = null;
 
@@ -47,7 +48,7 @@ public class Authentication implements Filter {
 		request.setAttribute("destination", httpRequest.getRequestURI());
 		if (username != null || password != null) {
 			request.setAttribute("message",
-					"nome utente e password non corrispondono, riprova");
+							"nome utente e password non corrispondono, riprova");
 		}
 		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}

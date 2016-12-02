@@ -17,69 +17,69 @@ import com.opensymphony.xwork2.Preparable;
 
 public class Auth extends ActionSupport implements Preparable, CookieProvider {
 
-    private static final long serialVersionUID = 1063416495504411616L;
+	private static final long serialVersionUID = 1063416495504411616L;
 
-    private String token;
-    private String username;
-    private String password;
-    private User user;
+	private String token;
+	private String username;
+	private String password;
+	private User user;
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+	public void setToken(String token) {
+		this.token = token;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    @Override
-    public Set<Cookie> getCookies() {
-        Set<Cookie> cookies = new HashSet<Cookie>();
-        Cookie cookie = new Cookie("token", token);
-        cookies.add(cookie);
-        return cookies;
-    }
+	@Override
+	public Set<Cookie> getCookies() {
+		Set<Cookie> cookies = new HashSet<Cookie>();
+		Cookie cookie = new Cookie("token", token);
+		cookies.add(cookie);
+		return cookies;
+	}
 
-    @Override
-    public void validate() {
-        if (username == null) {
-            addFieldError("username", "No username provided");
-        }
+	@Override
+	public void validate() {
+		if (username == null) {
+			addFieldError("username", "No username provided");
+		}
 
-        if (password == null) {
-            addFieldError("password", "No password provided");
-        }
-    }
+		if (password == null) {
+			addFieldError("password", "No password provided");
+		}
+	}
 
-    @Override
-    public void prepare() {
-        if (token != null) {
-            user = UsersDB.getInstance().get(token);
-            return;
-        }
+	@Override
+	public void prepare() {
+		if (token != null) {
+			user = UsersDB.getInstance().get(token);
+			return;
+		}
 
-        if (username == null) {
-            throw new LoginException();
-        }
+		if (username == null) {
+			throw new LoginException();
+		}
 
-        user = UsersDB.getInstance().get(username);
-        if (user == null || !user.getPassword().equals(password)) {
-            throw new InputException();
-        }
+		user = UsersDB.getInstance().get(username);
+		if (user == null || !user.getPassword().equals(password)) {
+			throw new InputException();
+		}
 
-        token = username;
-    }
+		token = username;
+	}
 
-    public String logout() throws Exception {
-        token = null;
-        return SUCCESS;
-    }
+	public String logout() throws Exception {
+		token = null;
+		return SUCCESS;
+	}
 }

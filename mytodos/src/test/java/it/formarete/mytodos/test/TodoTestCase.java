@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TodoTestCase {
+
 	private ClassPathXmlApplicationContext context;
 	private TodoDao todoDao;
 	private UserDao userDao;

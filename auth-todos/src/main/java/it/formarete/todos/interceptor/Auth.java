@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 public class Auth extends AbstractInterceptor {
+
 	private static final long serialVersionUID = -1101281231596857880L;
 
 	@Override
@@ -54,7 +55,7 @@ public class Auth extends AbstractInterceptor {
 			User user = UsersDB.getInstance().get(username);
 			if (user != null && user.getPassword().equals(password)) {
 				ServletActionContext.getResponse().addCookie(
-						new Cookie("login", "true"));
+								new Cookie("login", "true"));
 				return invocation.invoke();
 			}
 			return Action.INPUT;

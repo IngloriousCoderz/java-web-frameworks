@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UsersDB {
+
 	private static final Map<String, User> USERS = new HashMap<String, User>();
 
 	static {

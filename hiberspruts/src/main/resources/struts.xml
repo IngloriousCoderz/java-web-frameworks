@@ -6,11 +6,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 	<package name="default" extends="struts-default">
 		<action name="">
-			<result>/WEB-INF/classes/jsp/index.jsp</result>
+			<result>index.jsp</result>
 		</action>
 
 		<action name="register" class="newEmployee">
-			<result name="success">/WEB-INF/classes/jsp/welcome.jsp</result>
+			<result name="success">welcome.jsp</result>
 		</action>
 	</package>
 </struts>

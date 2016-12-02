@@ -14,6 +14,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Todos extends ActionSupport {
+
 	private static final long serialVersionUID = -1224483568541819071L;
 
 	private TodoDao todoDao;

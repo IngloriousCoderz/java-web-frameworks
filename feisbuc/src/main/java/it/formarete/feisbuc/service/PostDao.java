@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public class PostDao {
+
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -35,7 +36,7 @@ public class PostDao {
 
 	public void delete(int id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"delete from Post where id = :id");
+						"delete from Post where id = :id");
 		query.setParameter("id", id);
 		query.executeUpdate();
 	}
@@ -43,12 +44,12 @@ public class PostDao {
 	@SuppressWarnings("unchecked")
 	public List<Post> getAll(User user) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from Post where owner = :owner order by id desc")
-				.setParameter("owner", user).list();
+						.createQuery("from Post where owner = :owner order by id desc")
+						.setParameter("owner", user).list();
 	}
 
 	public void clear() {
 		sessionFactory.getCurrentSession().createQuery("delete from Post")
-				.executeUpdate();
+						.executeUpdate();
 	}
 }

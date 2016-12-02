@@ -15,31 +15,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UsersRestController {
 
-    @Autowired
-    private UsersDB db;
+	@Autowired
+	private UsersDB db;
 
-    @GetMapping("/users")
-    public List<User> getAll() {
-        return db.getAll();
-    }
+	@GetMapping("/users")
+	public List<User> getAll() {
+		return db.getAll();
+	}
 
-    @GetMapping("/users/{username}")
-    public User getUser(@PathVariable("username") String username) {
-        return db.get(username);
-    }
+	@GetMapping("/users/{username}")
+	public User getUser(@PathVariable("username") String username) {
+		return db.get(username);
+	}
 
-    @PostMapping(path = "/users", consumes = "application/json")
-    public void addUser(@RequestBody User user) {
-        db.add(user);
-    }
+	@PostMapping(path = "/users", consumes = "application/json")
+	public void addUser(@RequestBody User user) {
+		db.add(user);
+	}
 
-    @PutMapping(path = "/users/{username}", consumes = "application/json")
-    public void updateUser(@PathVariable("username") String username, @RequestBody User user) {
-        db.update(username, user);
-    }
+	@PutMapping(path = "/users/{username}", consumes = "application/json")
+	public void updateUser(@PathVariable("username") String username, @RequestBody User user) {
+		db.update(username, user);
+	}
 
-    @DeleteMapping(path = "/users/{username}")
-    public void removeUser(@PathVariable("username") String username) {
-        db.remove(username);
-    }
+	@DeleteMapping(path = "/users/{username}")
+	public void removeUser(@PathVariable("username") String username) {
+		db.remove(username);
+	}
 }

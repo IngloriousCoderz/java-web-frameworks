@@ -13,6 +13,7 @@ import org.hibernate.annotations.Formula;
 @Entity
 @Table(name = "posts")
 public class Post {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

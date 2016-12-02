@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class LikeTestCase {
+
 	private ClassPathXmlApplicationContext context;
 	private LikeDao likeDao;
 	private PostDao postDao;

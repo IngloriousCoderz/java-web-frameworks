@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UserTestCase {
+
 	private ClassPathXmlApplicationContext context;
 	private UserDAO dao;
 

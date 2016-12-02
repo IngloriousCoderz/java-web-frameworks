@@ -9,6 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "employee")
 public class Employee {
+
 	/* WARNING: must explicitly define strategy with Spring! */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

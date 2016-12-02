@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 public class Auth extends AbstractInterceptor {
+
 	private static final long serialVersionUID = -1101281231596857880L;
 
 	private UserDao userDao;

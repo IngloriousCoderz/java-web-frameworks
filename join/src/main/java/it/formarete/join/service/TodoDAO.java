@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 
 @Transactional
 public class TodoDAO {
+
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -35,8 +36,8 @@ public class TodoDAO {
 
 	public void delete(int id) {
 		sessionFactory.getCurrentSession()
-				.createQuery("delete from Todo where id = :id").setParameter("id", id)
-				.executeUpdate();
+						.createQuery("delete from Todo where id = :id").setParameter("id", id)
+						.executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -47,12 +48,12 @@ public class TodoDAO {
 	@SuppressWarnings("unchecked")
 	public List<Todo> getAll(User user) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from Todo where owner = :owner")
-				.setParameter("owner", user).list();
+						.createQuery("from Todo where owner = :owner")
+						.setParameter("owner", user).list();
 	}
 
 	public void clear() {
 		sessionFactory.getCurrentSession().createQuery("delete from Todo")
-				.executeUpdate();
+						.executeUpdate();
 	}
 }

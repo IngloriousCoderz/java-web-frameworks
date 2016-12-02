@@ -13,6 +13,7 @@ import it.formarete.model.Employee;
 import it.formarete.service.EmployeeDAO;
 
 public class EmployeeDAOTestCase {
+
 	@Test
 	public void testCrud() {
 		Employee employee = new Employee();

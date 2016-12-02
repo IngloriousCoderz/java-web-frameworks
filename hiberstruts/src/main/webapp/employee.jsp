@@ -1,10 +1,10 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <p>
-Welcome <s:property value="name" />,
-your salary is <s:property value="salary" />!
+	Welcome <s:property value="name" />,
+	your salary is <s:property value="salary" />!
 </p>
 <p>
-Here are all registered employees:
+	Here are all registered employees:
 </p>
 <ul>
 	<s:iterator value="employees">

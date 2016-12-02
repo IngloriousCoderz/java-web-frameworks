@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class UsersDB {
+
 	private static UsersDB singleton;
 
 	private Map<String, User> users;

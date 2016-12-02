@@ -6,6 +6,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtils {
+
 	private static SessionFactory singleton;
 
 	public static SessionFactory getSessionFactory() {
@@ -13,7 +14,7 @@ public class HibernateUtils {
 			Configuration config = new Configuration();
 			config.configure();
 			ServiceRegistry registry = new StandardServiceRegistryBuilder()
-					.applySettings(config.getProperties()).build();
+							.applySettings(config.getProperties()).build();
 			singleton = new Configuration().configure().buildSessionFactory(registry);
 		}
 		return singleton;

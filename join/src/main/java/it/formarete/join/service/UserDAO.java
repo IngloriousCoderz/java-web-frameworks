@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public class UserDAO {
+
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -25,8 +26,8 @@ public class UserDAO {
 
 	public User get(String name) {
 		return (User) sessionFactory.getCurrentSession()
-				.createQuery("from User where name = :name").setParameter("name", name)
-				.uniqueResult();
+						.createQuery("from User where name = :name").setParameter("name", name)
+						.uniqueResult();
 	}
 
 	public int save(User user) {
@@ -48,8 +49,8 @@ public class UserDAO {
 
 	public void deleteHQL(String name) {
 		sessionFactory.getCurrentSession()
-				.createQuery("delete from User where name = :name")
-				.setParameter("name", name).executeUpdate();
+						.createQuery("delete from User where name = :name")
+						.setParameter("name", name).executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -59,6 +60,6 @@ public class UserDAO {
 
 	public void clear() {
 		sessionFactory.getCurrentSession().createQuery("delete from User")
-				.executeUpdate();
+						.executeUpdate();
 	}
 }

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -66,7 +67,6 @@ public class User {
 	// public void setFriendOf(List<User> friendOf) {
 	// this.friendOf = friendOf;
 	// }
-
 	public void addFriend(User user) {
 		if (friends == null) {
 			friends = new ArrayList<User>();
@@ -77,7 +77,6 @@ public class User {
 		// user.friendOf = new ArrayList<User>();
 		// }
 		// user.friendOf.add(this);
-
 		if (!user.getFriends().contains(this)) {
 			user.addFriend(this);
 		}

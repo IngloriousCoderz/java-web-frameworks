@@ -20,51 +20,56 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</interceptors>
 
 		<global-results>
-			<result name="login">/WEB-INF/classes/jsp/auth-login.jsp</result>
-			<result name="input">/WEB-INF/classes/jsp/auth-input.jsp</result>
-			<result name="reload">/WEB-INF/classes/jsp/auth-success.jsp</result>
+			<result name="login">auth-login.jsp</result>
+			<result name="input">auth-input.jsp</result>
+			<result name="reload">auth-success.jsp</result>
 		</global-results>
 
 		<action name="" class="todosAction">
 			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+			<result>todos-success.jsp</result>
+		</action>
+		
+		<action name="home" class="todosAction">
+			<interceptor-ref name="authStack" />
+			<result>todos-success.jsp</result>
 		</action>
 
 		<action name="submit" class="todosAction" method="submit">
 			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+			<result>todos-success.jsp</result>
 		</action>
 
 		<action name="toggle-done" class="todosAction" method="toggleDone" />
 
 		<action name="edit" class="todosAction" method="edit">
 			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+			<result>todos-success.jsp</result>
 		</action>
 
 		<action name="delete" class="todosAction" method="delete">
 			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+			<result>todos-success.jsp</result>
 		</action>
 
 		<action name="clear" class="todosAction" method="clearConfirm">
 			<interceptor-ref name="authStack" />
-			<result name="confirm">/WEB-INF/classes/jsp/cleartodos-confirm.jsp
+			<result name="confirm">cleartodos-confirm.jsp
 			</result>
 		</action>
 
 		<action name="clear-yes" class="todosAction" method="clear">
 			<interceptor-ref name="authStack" />
-			<result>/WEB-INF/classes/jsp/todos-success.jsp</result>
+			<result>todos-success.jsp</result>
 		</action>
 
 		<action name="register">
-			<result>/WEB-INF/classes/jsp/register-input.jsp</result>
+			<result>register-input.jsp</result>
 		</action>
 
 		<action name="register-success" class="authAction" method="register">
-			<result>/WEB-INF/classes/jsp/register-success.jsp</result>
-			<result name="error">/WEB-INF/classes/jsp/register-error.jsp</result>
+			<result>register-success.jsp</result>
+			<result name="error">register-error.jsp</result>
 		</action>
 
 		<action name="login" class="authAction">
@@ -76,12 +81,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="unregister" class="authAction" method="unregisterConfirm">
-			<result name="confirm">/WEB-INF/classes/jsp/unregister-confirm.jsp
+			<result name="confirm">unregister-confirm.jsp
 			</result>
 		</action>
 
 		<action name="unregister-yes" class="authAction" method="unregister">
-			<result>/WEB-INF/classes/jsp/unregister-success.jsp</result>
+			<result>unregister-success.jsp</result>
 		</action>
 	</package>
 </struts>

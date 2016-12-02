@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class PostTestCase {
+
 	private ClassPathXmlApplicationContext context;
 	private PostDao postDao;
 	private UserDao userDao;

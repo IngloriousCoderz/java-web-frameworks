@@ -1,6 +1,7 @@
 package it.formarete.mvc;
 
 public class Controller {
+
 	private Model model;
 	private View view;
 

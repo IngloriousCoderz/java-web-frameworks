@@ -1,6 +1,7 @@
 package it.formarete.todos.model;
 
 public class Todo {
+
 	private int id;
 	private String title;
 

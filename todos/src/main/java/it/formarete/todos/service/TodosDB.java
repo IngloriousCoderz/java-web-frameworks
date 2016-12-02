@@ -38,7 +38,7 @@ public class TodosDB {
 		todo.setId(++id);
 		return save(todo);
 	}
-	
+
 	public int save(Todo todo) {
 		todos.put(id, todo);
 		return todo.getId();
@@ -49,7 +49,7 @@ public class TodosDB {
 		todo.setTitle(title);
 		todos.put(id, todo); // useless, but more DB-ish
 	}
-	
+
 	public void update(Todo todo) {
 		todos.put(todo.getId(), todo);
 	}
