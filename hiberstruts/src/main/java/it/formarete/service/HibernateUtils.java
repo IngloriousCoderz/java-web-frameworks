@@ -15,7 +15,7 @@ public class HibernateUtils {
 			config.configure();
 			ServiceRegistry registry = new StandardServiceRegistryBuilder()
 							.applySettings(config.getProperties()).build();
-			singleton = new Configuration().configure().buildSessionFactory(registry);
+			singleton = config.buildSessionFactory(registry);
 		}
 		return singleton;
 	}

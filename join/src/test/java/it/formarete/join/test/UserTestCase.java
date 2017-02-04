@@ -45,6 +45,8 @@ public class UserTestCase {
 		assertEquals("nimda", user.getPassword());
 
 		dao.delete(user);
+//		 dao.deleteByName(user.getName());
+//		 dao.deleteByNameHQL(user.getName());
 
 		user = dao.get("admin");
 		assertNull(user);

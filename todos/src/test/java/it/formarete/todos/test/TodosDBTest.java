@@ -11,7 +11,7 @@ public class TodosDBTest {
 
 	@Before
 	public void setUp() {
-		db = new TodosDB();
+		db = TodosDB.getInstance();
 	}
 
 	@Test

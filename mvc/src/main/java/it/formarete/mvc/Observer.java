@@ -1,6 +1,6 @@
 package it.formarete.mvc;
 
-public interface IObserver {
+public interface Observer {
 
 	public void wakeUp(String attribute);
 }

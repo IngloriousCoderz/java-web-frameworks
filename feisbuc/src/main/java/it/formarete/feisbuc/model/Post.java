@@ -17,7 +17,7 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private User owner;
 	private String text;
 	@Formula("(select count(l.id) from likes l where l.post_id = id)")

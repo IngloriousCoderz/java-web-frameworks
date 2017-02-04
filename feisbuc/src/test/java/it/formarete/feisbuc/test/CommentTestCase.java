@@ -18,24 +18,24 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class CommentTestCase {
 
 	private ClassPathXmlApplicationContext context;
-	private CommentDao commentDao;
 	private LikeDao likeDao;
+	private CommentDao commentDao;
 	private PostDao postDao;
 	private UserDao userDao;
 
 	@Before
 	public void setUp() {
 		context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		commentDao = (CommentDao) context.getBean("commentDao");
 		likeDao = (LikeDao) context.getBean("likeDao");
+		commentDao = (CommentDao) context.getBean("commentDao");
 		postDao = (PostDao) context.getBean("postDao");
 		userDao = (UserDao) context.getBean("userDao");
 	}
 
 	@Test
 	public void testCrud() {
-		commentDao.clear();
 		likeDao.clear();
+		commentDao.clear();
 		postDao.clear();
 		userDao.clear();
 

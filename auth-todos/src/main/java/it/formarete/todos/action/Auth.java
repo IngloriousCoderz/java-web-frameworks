@@ -44,7 +44,7 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 		if (username != null) {
 			User user = UsersDB.getInstance().get(username);
 			if (user != null && user.getPassword().equals(password)) {
-				response.addCookie(new Cookie("login", "true"));
+				response.addCookie(new Cookie("token", "true"));
 				return SUCCESS;
 			}
 			return INPUT;
@@ -54,7 +54,7 @@ public class Auth extends ActionSupport implements ServletResponseAware {
 	}
 
 	public String logout() {
-		Cookie cookie = new Cookie("login", "true");
+		Cookie cookie = new Cookie("token", "true");
 		cookie.setMaxAge(0);
 		response.addCookie(cookie);
 		return SUCCESS;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HelloController {
 
 	@RequestMapping(value = "/{who}", method = RequestMethod.GET)
-	public String printHello(Model model, @PathVariable(value = "who") String who) {
+	public String printHello(Model model, @PathVariable("who") String who) {
 		model.addAttribute("message", "Hello " + who + "!");
 		return "hello";
 	}

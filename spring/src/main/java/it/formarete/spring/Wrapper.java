@@ -13,7 +13,10 @@ public class Wrapper {
 		System.out.println("Calculating force...");
 	}
 
-	@AfterReturning(pointcut = "execution(* it.formarete.spring.Spring.getForce(..))", returning = "result")
+	@AfterReturning(
+					pointcut = "execution(* it.formarete.spring.Spring.getForce(..))",
+					returning = "result"
+	)
 	public void afterReturningForce(JoinPoint joinPoint, Object result) {
 		System.out.println("Force calculated, value was " + result);
 	}

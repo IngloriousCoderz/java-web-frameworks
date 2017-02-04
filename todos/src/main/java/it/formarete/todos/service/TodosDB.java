@@ -21,7 +21,7 @@ public class TodosDB {
 		return singleton;
 	}
 
-	public TodosDB() {
+	private TodosDB() {
 		todos = new HashMap<Integer, Todo>();
 		id = 0;
 		create("Learn Struts");

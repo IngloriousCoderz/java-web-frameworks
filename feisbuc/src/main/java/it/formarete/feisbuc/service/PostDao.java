@@ -49,7 +49,8 @@ public class PostDao {
 	}
 
 	public void clear() {
-		sessionFactory.getCurrentSession().createQuery("delete from Post")
+		sessionFactory.getCurrentSession()
+						.createQuery("delete from Post")
 						.executeUpdate();
 	}
 }

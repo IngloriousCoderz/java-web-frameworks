@@ -2,25 +2,26 @@ package it.formarete.mvc;
 
 import java.util.ArrayList;
 import java.util.List;
+import it.formarete.mvc.Observer;
 
 public class Observable {
 
-	private List<IObserver> observers;
+	private List<Observer> observers;
 
 	public Observable() {
-		observers = new ArrayList<IObserver>();
+		observers = new ArrayList<Observer>();
 	}
 
-	public void addObserver(IObserver observer) {
+	public void addObserver(Observer observer) {
 		observers.add(observer);
 	}
 
-	public void removeObserver(IObserver observer) {
+	public void removeObserver(Observer observer) {
 		observers.remove(observer);
 	}
 
 	public void publish(String attribute) {
-		for (IObserver observer : observers) {
+		for (Observer observer : observers) {
 			observer.wakeUp(attribute);
 		}
 	}

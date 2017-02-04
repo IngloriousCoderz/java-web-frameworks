@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CookiesMap implements Filter {
 
-	String[] cookieNames;
+	private String[] cookieNames;
 
 	@Override
 	public void init(FilterConfig config) throws ServletException {

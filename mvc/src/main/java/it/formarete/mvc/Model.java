@@ -1,15 +1,8 @@
 package it.formarete.mvc;
 
-public class Model extends Observable {
+public interface Model {
 
-	private String attribute;
+	public String getAttribute();
 
-	public String getAttribute() {
-		return attribute;
-	}
-
-	public void setAttribute(String attribute) {
-		this.attribute = attribute;
-		publish(attribute);
-	}
+	public void setAttribute(String attribute);
 }

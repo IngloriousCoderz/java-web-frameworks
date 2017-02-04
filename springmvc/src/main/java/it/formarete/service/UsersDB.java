@@ -6,21 +6,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UsersDB {
 
-	private static UsersDB singleton;
+	private final Map<String, User> users;
 
-	private Map<String, User> users;
-
-	public static UsersDB getInstance() {
-		if (singleton == null) {
-			singleton = new UsersDB();
-		}
-		return singleton;
-	}
-
-	private UsersDB() {
+	public UsersDB() {
 		users = new HashMap<String, User>();
 		users.put("giancarlo", new User("giancarlo", "magalli"));
 		users.put("pippo", new User("pippo", "baudo"));

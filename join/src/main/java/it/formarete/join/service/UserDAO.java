@@ -42,12 +42,12 @@ public class UserDAO {
 		sessionFactory.getCurrentSession().delete(user);
 	}
 
-	public void delete(String name) {
+	public void deleteByName(String name) {
 		User user = get(name);
 		delete(user);
 	}
 
-	public void deleteHQL(String name) {
+	public void deleteByNameHQL(String name) {
 		sessionFactory.getCurrentSession()
 						.createQuery("delete from User where name = :name")
 						.setParameter("name", name).executeUpdate();

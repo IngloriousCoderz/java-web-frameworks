@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 import it.formarete.feisbuc.model.Like;
 import it.formarete.feisbuc.model.Post;
 import it.formarete.feisbuc.model.User;
+import it.formarete.feisbuc.service.CommentDao;
 import it.formarete.feisbuc.service.LikeDao;
 import it.formarete.feisbuc.service.PostDao;
 import it.formarete.feisbuc.service.UserDao;
@@ -17,6 +18,7 @@ public class LikeTestCase {
 
 	private ClassPathXmlApplicationContext context;
 	private LikeDao likeDao;
+	private CommentDao commentDao;
 	private PostDao postDao;
 	private UserDao userDao;
 
@@ -24,6 +26,7 @@ public class LikeTestCase {
 	public void setUp() {
 		context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		likeDao = (LikeDao) context.getBean("likeDao");
+		commentDao = (CommentDao) context.getBean("commentDao");
 		postDao = (PostDao) context.getBean("postDao");
 		userDao = (UserDao) context.getBean("userDao");
 	}
@@ -31,6 +34,7 @@ public class LikeTestCase {
 	@Test
 	public void testCrud() {
 		likeDao.clear();
+		commentDao.clear();
 		postDao.clear();
 		userDao.clear();
 
