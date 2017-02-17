@@ -25,7 +25,7 @@ public class Authentication implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		User user = null;
 
-		String username = (String) request.getAttribute("username");
+		String username = (String) request.getAttribute("token");
 		user = UsersDB.get(username);
 
 		if (user != null) {
@@ -39,9 +39,9 @@ public class Authentication implements Filter {
 
 		String password = request.getParameter("password");
 		if (user != null && user.getPassword().equals(password)) {
-			request.setAttribute("username", user.getUsername());
 			request.setAttribute("user", user);
 			chain.doFilter(request, response);
+			request.setAttribute("token", user.getUsername());
 			return;
 		}
 

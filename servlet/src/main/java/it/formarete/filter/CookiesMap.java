@@ -42,7 +42,7 @@ public class CookiesMap implements Filter {
 		}
 
 		if (cookieNames == null) {
-			cookieNames = (String[]) cookiesMap.keySet().toArray();
+			cookieNames = cookiesMap.keySet().toArray(new String[0]);
 		}
 
 		for (String cookieName : cookieNames) {
